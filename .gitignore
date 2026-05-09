@@ -20,5 +20,11 @@ build/
 # macOS
 .DS_Store
 
+# Test cache
+.pytest_cache/
+
+# Root-level artifact (not a package)
+/__init__.py
+
 # Installed skills (reproduced via skills-lock.json)
 .agents/

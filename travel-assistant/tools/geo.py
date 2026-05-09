@@ -1,6 +1,8 @@
 import requests
 from langchain_core.tools import tool
 
+from .models import GeocodeResult
+
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
 HEADERS = {"User-Agent": "travel-assistant/1.0"}
 
@@ -24,7 +26,7 @@ def _geocode(location: str) -> tuple[float, float] | None:
 
 
 @tool
-def geocode_location(location: str) -> str:
+def geocode_location(location: str) -> GeocodeResult:
     """Get geographic coordinates and full details for a place name, city, or address.
 
     Use this when you need to confirm where a location is, get its coordinates,
@@ -43,7 +45,7 @@ def geocode_location(location: str) -> str:
         resp.raise_for_status()
         data = resp.json()
         if not data:
-            return f"Could not find coordinates for '{location}'. Try a more specific name (e.g., add the country)."
+            return GeocodeResult(error=f"Could not find coordinates for '{location}'. Try a more specific name (e.g., add the country).")
 
         result = data[0]
         lat = float(result["lat"])
@@ -51,13 +53,11 @@ def geocode_location(location: str) -> str:
         display_name = result.get("display_name", "")
         country = result.get("address", {}).get("country", "Unknown")
 
-        lat_dir = "N" if lat >= 0 else "S"
-        lon_dir = "E" if lon >= 0 else "W"
-
-        return (
-            f"Location: {display_name}\n"
-            f"Coordinates: {abs(lat):.4f}°{lat_dir}, {abs(lon):.4f}°{lon_dir}\n"
-            f"Country: {country}"
+        return GeocodeResult(
+            display_name=display_name,
+            lat=lat,
+            lon=lon,
+            country=country,
         )
     except requests.exceptions.RequestException as e:
-        return f"Geocoding service unavailable: {e}"
+        return GeocodeResult(error=f"Geocoding service unavailable: {e}")

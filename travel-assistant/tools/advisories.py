@@ -3,11 +3,13 @@ from datetime import datetime
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_core.tools import tool
 
+from .models import TravelAdvisoryResult
+
 _ddg = DuckDuckGoSearchRun()
 
 
 @tool
-def get_travel_advisory(country: str) -> str:
+def get_travel_advisory(country: str) -> TravelAdvisoryResult:
     """Get current travel safety advisory information for a destination country.
 
     Always call this tool for any destination a traveler mentions, regardless of
@@ -25,15 +27,8 @@ def get_travel_advisory(country: str) -> str:
     )
     uk_query = f"{country} FCDO foreign travel advice {year} safety entry requirements"
 
-    us_result = _ddg.run(us_query)
-    uk_result = _ddg.run(uk_query)
-
-    return (
-        f"Travel advisory information for {country.title()}:\n\n"
-        f"US State Department:\n{us_result}\n\n"
-        f"UK FCDO:\n{uk_result}\n\n"
-        f"Always verify current advisories directly at:\n"
-        f"  • US citizens: travel.state.gov\n"
-        f"  • UK citizens: gov.uk/foreign-travel-advice\n"
-        f"  • Other nationalities: check your country's foreign ministry website"
+    return TravelAdvisoryResult(
+        country=country.title(),
+        us_advisory=_ddg.run(us_query),
+        uk_advisory=_ddg.run(uk_query),
     )

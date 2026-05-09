@@ -5,6 +5,7 @@ import requests
 from langchain_core.tools import tool
 
 from .geo import _geocode
+from .models import ClimateResult
 
 ARCHIVE_URL = "https://archive-api.open-meteo.com/v1/archive"
 
@@ -27,7 +28,7 @@ def _parse_month(month: str) -> int | None:
 
 
 @tool
-def get_seasonal_climate(city: str, month: str, units: str = "celsius") -> str:
+def get_seasonal_climate(city: str, month: str, units: str = "celsius") -> ClimateResult:
     """Get typical seasonal weather conditions for a travel destination in a specific month.
 
     Use this for trip planning when the travel date is more than 7-10 days away —
@@ -43,11 +44,11 @@ def get_seasonal_climate(city: str, month: str, units: str = "celsius") -> str:
     """
     month_num = _parse_month(month)
     if month_num is None:
-        return f"Could not parse month '{month}'. Use a month name (e.g., 'July') or number (e.g., '7')."
+        return ClimateResult(error=f"Could not parse month '{month}'. Use a month name (e.g., 'July') or number (e.g., '7').")
 
     coords = _geocode(city)
     if coords is None:
-        return f"Could not determine location for '{city}'. Try adding the country name."
+        return ClimateResult(error=f"Could not determine location for '{city}'. Try adding the country name.")
 
     lat, lon = coords
     use_fahrenheit = units.lower() == "fahrenheit"
@@ -84,23 +85,20 @@ def get_seasonal_climate(city: str, month: str, units: str = "celsius") -> str:
         precip = [v for v in daily.get("precipitation_sum", []) if v is not None]
 
         if not highs:
-            return f"No historical climate data available for '{city}' in {month_name}."
+            return ClimateResult(error=f"No historical climate data available for '{city}' in {month_name}.")
 
-        avg_high = sum(highs) / len(highs)
-        avg_low = sum(lows) / len(lows)
-        max_temp = max(highs)
-        min_temp = min(lows)
-        total_precip = sum(precip)
-        rainy_days = sum(1 for p in precip if p > 1.0)
-
-        return (
-            f"Typical {month_name} weather in {city.title()} (based on {reference_year} data):\n"
-            f"Average High: {avg_high:.1f}{unit_sym}  |  Average Low: {avg_low:.1f}{unit_sym}\n"
-            f"Hottest day: {max_temp:.1f}{unit_sym}  |  Coolest day: {min_temp:.1f}{unit_sym}\n"
-            f"Total Precipitation: {total_precip:.0f}mm across {rainy_days} rainy day{'s' if rainy_days != 1 else ''}\n"
-            f"\nNote: Based on historical data for {month_name} {reference_year}. "
-            f"Actual conditions may vary."
+        return ClimateResult(
+            city=city.title(),
+            month=month_name,
+            units=unit_sym,
+            avg_high=round(sum(highs) / len(highs), 1),
+            avg_low=round(sum(lows) / len(lows), 1),
+            max_temp=max(highs),
+            min_temp=min(lows),
+            total_precip_mm=round(sum(precip), 1),
+            rainy_days=sum(1 for p in precip if p > 1.0),
+            reference_year=reference_year,
         )
 
     except requests.exceptions.RequestException as e:
-        return f"Climate data service unavailable: {e}. Please try again."
+        return ClimateResult(error=f"Climate data service unavailable: {e}. Please try again.")

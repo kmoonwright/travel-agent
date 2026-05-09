@@ -4,6 +4,7 @@ import requests
 from langchain_core.tools import tool
 
 from .geo import _geocode
+from .models import CurrentWeather, DailyForecast, WeatherResult
 
 OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
 
@@ -22,7 +23,7 @@ WMO_CODES = {
 
 
 @tool
-def get_weather(city: str, units: str = "celsius") -> str:
+def get_weather(city: str, units: str = "celsius") -> WeatherResult:
     """Get current weather conditions and 7-day forecast for a travel destination.
 
     Use this when a traveler wants to know what to pack, whether to expect rain,
@@ -34,7 +35,7 @@ def get_weather(city: str, units: str = "celsius") -> str:
     """
     coords = _geocode(city)
     if coords is None:
-        return f"Could not determine location for '{city}'. Try adding the country name."
+        return WeatherResult(error=f"Could not determine location for '{city}'. Try adding the country name.")
 
     lat, lon = coords
     use_fahrenheit = units.lower() == "fahrenheit"
@@ -62,28 +63,26 @@ def get_weather(city: str, units: str = "celsius") -> str:
         cur = data.get("current", {})
         daily = data.get("daily", {})
 
-        condition = WMO_CODES.get(cur.get("weather_code", 0), "Unknown")
+        current = CurrentWeather(
+            temperature=cur.get("temperature_2m"),
+            humidity_pct=cur.get("relative_humidity_2m"),
+            wind_speed_kmh=cur.get("wind_speed_10m"),
+            condition=WMO_CODES.get(cur.get("weather_code", 0), "Unknown"),
+            units=unit_sym,
+        )
 
-        lines = [
-            f"Weather for {city.title()}:",
-            f"Current: {cur.get('temperature_2m', '?')}{unit_sym}, {condition}, "
-            f"Humidity: {cur.get('relative_humidity_2m', '?')}%, "
-            f"Wind: {cur.get('wind_speed_10m', '?')} km/h",
-            "",
-            "7-Day Forecast:",
-        ]
-
+        forecast = []
         dates = daily.get("time", [])
         for i, date_str in enumerate(dates):
-            day = datetime.strptime(date_str, "%Y-%m-%d").strftime("%a %b %d")
-            high = daily.get("temperature_2m_max", [None] * 7)[i]
-            low = daily.get("temperature_2m_min", [None] * 7)[i]
-            rain = daily.get("precipitation_sum", [0] * 7)[i] or 0
-            cond = WMO_CODES.get(daily.get("weather_code", [0] * 7)[i], "Unknown")
-            rain_str = f", {rain:.0f}mm rain" if rain > 0 else ""
-            lines.append(f"  {day}: {cond}, High {high}{unit_sym} / Low {low}{unit_sym}{rain_str}")
+            forecast.append(DailyForecast(
+                date=date_str,
+                condition=WMO_CODES.get(daily.get("weather_code", [0] * 7)[i], "Unknown"),
+                high=daily.get("temperature_2m_max", [None] * 7)[i],
+                low=daily.get("temperature_2m_min", [None] * 7)[i],
+                precipitation_mm=daily.get("precipitation_sum", [0] * 7)[i] or 0,
+            ))
 
-        return "\n".join(lines)
+        return WeatherResult(city=city.title(), units=unit_sym, current=current, forecast=forecast)
 
     except requests.exceptions.RequestException as e:
-        return f"Weather service unavailable: {e}. Please try again."
+        return WeatherResult(error=f"Weather service unavailable: {e}. Please try again.")

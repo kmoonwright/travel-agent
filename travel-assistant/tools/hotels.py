@@ -4,6 +4,8 @@ from typing import Optional
 from langchain_community.tools import DuckDuckGoSearchResults, DuckDuckGoSearchRun
 from langchain_core.tools import tool
 
+from .models import HotelSearchResult
+
 _ddg_results = DuckDuckGoSearchResults(num_results=5)
 _ddg_run = DuckDuckGoSearchRun()
 
@@ -22,7 +24,7 @@ def search_hotels(
     check_out: str,
     guests: int = 2,
     max_price_per_night: Optional[int] = None,
-) -> str:
+) -> HotelSearchResult:
     """Search for hotels and accommodation at a destination.
 
     Use this when a traveler asks about where to stay, hotel prices,
@@ -54,12 +56,12 @@ def search_hotels(
     except Exception:
         result = _ddg_run.run(query)
 
-    stay_str = f"{check_in} to {check_out}" if check_in and check_out else "dates TBD"
-    budget_label = f" (budget: {budget_str.strip()})" if budget_str else ""
-
-    return (
-        f"Hotel search in {location} — {stay_str}, "
-        f"{guests} guest{'s' if guests != 1 else ''}{budget_label}:\n\n"
-        f"{result}\n\n"
-        f"Tip: Compare prices on Booking.com, Hotels.com, or Airbnb. Book early for best rates."
+    return HotelSearchResult(
+        location=location,
+        check_in=check_in,
+        check_out=check_out,
+        guests=guests,
+        max_price_per_night=max_price_per_night,
+        nights=nights,
+        search_results=result,
     )

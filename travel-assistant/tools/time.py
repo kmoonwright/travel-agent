@@ -4,13 +4,14 @@ import requests
 from langchain_core.tools import tool
 
 from .geo import _geocode
+from .models import LocalTimeResult
 
 TIMEZONE_URL = "https://timeapi.io/api/timezone/coordinate"
 CURRENT_TIME_URL = "https://timeapi.io/api/time/current/zone"
 
 
 @tool
-def get_local_time(location: str) -> str:
+def get_local_time(location: str) -> LocalTimeResult:
     """Get the current local time and timezone at a travel destination.
 
     Use this when planning calls home, scheduling activities across time zones,
@@ -21,7 +22,7 @@ def get_local_time(location: str) -> str:
     """
     coords = _geocode(location)
     if coords is None:
-        return f"Could not determine location for '{location}'. Try a more specific name."
+        return LocalTimeResult(error=f"Could not determine location for '{location}'. Try a more specific name.")
 
     lat, lon = coords
 
@@ -34,7 +35,7 @@ def get_local_time(location: str) -> str:
         tz_resp.raise_for_status()
         timezone = tz_resp.json().get("timeZone")
         if not timezone:
-            return f"Could not determine timezone for '{location}'."
+            return LocalTimeResult(error=f"Could not determine timezone for '{location}'.")
 
         time_resp = requests.get(
             CURRENT_TIME_URL,
@@ -45,13 +46,14 @@ def get_local_time(location: str) -> str:
         t = time_resp.json()
 
         dt = datetime(t["year"], t["month"], t["day"], t["hour"], t["minute"])
-        dst_note = " (DST active)" if t.get("dstActive") else ""
 
-        return (
-            f"Local time in {location.title()}:\n"
-            f"Current time: {dt.strftime('%A, %B %d, %Y')} at {dt.strftime('%I:%M %p')}\n"
-            f"Timezone: {timezone}{dst_note}"
+        return LocalTimeResult(
+            location=location.title(),
+            datetime_str=f"{dt.strftime('%A, %B %d, %Y')} at {dt.strftime('%I:%M %p')}",
+            day_of_week=dt.strftime("%A"),
+            timezone=timezone,
+            dst_active=bool(t.get("dstActive")),
         )
 
     except requests.exceptions.RequestException as e:
-        return f"Time service unavailable: {e}. Please try again."
+        return LocalTimeResult(error=f"Time service unavailable: {e}. Please try again.")

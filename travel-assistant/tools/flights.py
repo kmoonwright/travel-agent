@@ -1,6 +1,8 @@
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_core.tools import tool
 
+from .models import FlightSearchResult
+
 _ddg = DuckDuckGoSearchRun()
 
 
@@ -11,7 +13,7 @@ def search_flights(
     date: str,
     passengers: int = 1,
     cabin_class: str = "economy",
-) -> str:
+) -> FlightSearchResult:
     """Search for available flights between two destinations.
 
     Use this when a traveler asks about flights, airfare prices, airlines,
@@ -30,9 +32,11 @@ def search_flights(
     )
     result = _ddg.run(query)
 
-    return (
-        f"Flight search: {origin} → {destination} on {date} "
-        f"({cabin_class}, {passengers} passenger{'s' if passengers != 1 else ''}):\n\n"
-        f"{result}\n\n"
-        f"Tip: Compare and book on Google Flights, Kayak, Skyscanner, or directly on airline websites."
+    return FlightSearchResult(
+        origin=origin,
+        destination=destination,
+        date=date,
+        cabin_class=cabin_class,
+        passengers=passengers,
+        search_results=result,
     )

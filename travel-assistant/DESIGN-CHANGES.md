@@ -159,9 +159,56 @@ results = evaluate_dataframe(dataframe=eval_df, evaluators=[evaluator])
 
 ---
 
+## Issue 6 — Tools returned formatted strings instead of structured output
+
+### What was missing
+
+All 11 tools returned Python `str` values — human-readable formatted text assembled with f-strings. While the LLM can parse these, the output is opaque to any downstream consumer (evaluators, dashboards, test assertions) that needs to extract individual fields. The assessment requirement explicitly asks for "structured output."
+
+### Approach: Pydantic models with a JSON `__str__`
+
+Added `tools/models.py` with a `TravelToolResult` base class and 14 concrete result models (including sub-models like `DailyForecast`, `Attraction`, `Restaurant`, `CurrentWeather`).
+
+```python
+class TravelToolResult(BaseModel):
+    error: Optional[str] = None
+
+    def __str__(self) -> str:
+        return self.model_dump_json(indent=2, exclude_none=True)
+```
+
+The `__str__` override is the key design decision: LangChain's `ToolMessage(content=observation)` calls `str()` on the tool return value. By returning JSON from `__str__`, the LLM receives clean, structured JSON in its context window — no changes to `agent.py` required, and Phoenix traces now show JSON-formatted tool outputs rather than ad-hoc strings.
+
+All error paths return the same model type with only the `error` field set, so callers always receive a consistent shape regardless of success or failure.
+
+### Trade-off
+
+JSON output is slightly more verbose than formatted strings but is unambiguously parseable by both LLMs and downstream code. GPT-4o handles JSON tool outputs well and can extract named fields more reliably than parsing free-form text.
+
+**Files changed:** `tools/models.py` (new), all 11 tool files (`geo.py`, `time.py`, `weather.py`, `climate.py`, `attractions.py`, `restaurants.py`, `hotels.py`, `flights.py`, `currency.py`, `advisories.py`, `utils.py`)
+
+---
+
+## Issue 7 — Evaluator and span export had no permanent home
+
+### What was missing
+
+`evaluate_frustration.py` lived inside `travel-assistant/` with no exported artifacts. Step 4 of the assessment requires exporting spans from Phoenix; the evaluator only posted annotations back to Phoenix and created an in-product dataset — no local files that could be committed to the repo.
+
+### Approach
+
+Created an `eval/` directory at the project root with three files:
+
+- `evaluate_frustration.py` (moved from `travel-assistant/`) — updated with CSV export: writes `eval/spans/raw_spans.csv` (all LangGraph root spans) and `eval/spans/frustration_eval_results.csv` (per-span labels, scores, and explanations) after each run.
+- `run_queries.py` — sends 10 diverse travel queries to `POST /chat` with a shared `session_id`, generating the traces that the evaluator then consumes.
+
+**Files changed:** `eval/evaluate_frustration.py` (moved + extended), `eval/run_queries.py` (new), `travel-assistant/evaluate_frustration.py` (deleted)
+
+---
+
 ## Summary table
 
-| Tool | Issue | Fix |
+| Area | Issue | Fix |
 |------|-------|-----|
 | `get_weather` | LLM skipped tool for future dates; 7-day window is useless for trip planning 2+ months out | New `get_seasonal_climate` tool using Open-Meteo archive API for historical monthly averages |
 | `search_hotels` | Date-specific DuckDuckGo queries return no results | Remove dates from query; use location + budget + year; switch to `DuckDuckGoSearchResults` |
@@ -169,3 +216,5 @@ results = evaluate_dataframe(dataframe=eval_df, evaluators=[evaluator])
 | System prompt | Weather tool choice not guided; advisory tool not called for safe countries | Explicit guidance for when to use `get_seasonal_climate` vs `get_weather`; always call advisory tool |
 | Tracing (all tools) | Anonymous traces; Overpass fallbacks invisible in Phoenix | `using_attributes()` propagates `session.id`/`user.id` to all spans; `record_exception()` + `tool.fallback=True` on degraded tool calls |
 | Evaluation | No post-hoc evaluation of user experience | `evaluate_frustration.py` — GPT-4o-mini `ClassificationEvaluator` scores every trace; annotations + frustrated-interactions dataset created in Phoenix |
+| All tools | String return values opaque to downstream consumers | `tools/models.py` — Pydantic `TravelToolResult` base with `exclude_none` JSON `__str__`; 11 typed return models |
+| Eval + spans | Evaluator buried in application package; no local span export | `eval/` directory: `run_queries.py`, `evaluate_frustration.py`, `eval/spans/*.csv` committed |

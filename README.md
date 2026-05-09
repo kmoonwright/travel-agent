@@ -115,24 +115,42 @@ When `search_attractions` or `search_restaurants` falls back from Overpass to Du
 
 ## Evaluation
 
-After collecting traces, run the offline frustration evaluator:
+### Generate traces
+
+Send 10 diverse queries to generate Phoenix traces:
 
 ```bash
-poetry run python travel-assistant/evaluate_frustration.py
+poetry run python eval/run_queries.py
+```
+
+### Run the frustration evaluator
+
+```bash
+poetry run python eval/evaluate_frustration.py
 ```
 
 **What it does:**
 
 1. Exports root spans from Phoenix (`root_spans_only=True`, filtered to `name == 'LangGraph'`) — one row per trace, containing the full user input and final agent response
-2. Builds an eval DataFrame and runs a `ClassificationEvaluator` (GPT-4o-mini) against every span
-3. Posts a `user_frustration` annotation to each span — visible in the Phoenix UI Feedback panel
-4. Creates a `frustrated-interactions` dataset in Phoenix from all flagged traces
+2. Saves `eval/spans/raw_spans.csv` — all LangGraph root spans as a local file
+3. Builds an eval DataFrame and runs a `ClassificationEvaluator` (GPT-4o-mini) against every span
+4. Posts a `user_frustration` annotation to each span — visible in the Phoenix UI Feedback panel
+5. Saves `eval/spans/frustration_eval_results.csv` — per-span labels, scores, and explanations
+6. Creates a `frustrated-interactions` dataset in Phoenix from all flagged traces
 
 **Why root spans:** `root_spans_only=True` gives one row per trace rather than one row per LLM call or tool invocation. Frustration is a conversation-level signal — the full user input and final assistant output are all the classifier needs; intermediate spans add noise.
 
 **Evaluator:** The GPT-4o-mini judge looks for signals in the user's message and the agent's response: explicit complaints, ALL CAPS emphasis, references to repeated failures, demands with no tolerance for alternatives, and negative comparisons to other tools. It assesses the user's emotional state at the **end** of the conversation — a user who starts frustrated but receives a satisfying answer scores `ok`.
 
 **Output:** Binary label (`frustrated` / `ok`) with score 1.0 / 0.0. Annotations appear in the Phoenix trace Feedback panel. Frustrated traces are exported to a named `frustrated-interactions` dataset ready for prompt iteration, fine-tuning data, or human review.
+
+## Testing
+
+```bash
+poetry run pytest tests/ -v
+```
+
+Covers: Pydantic model JSON serialization, `exclude_none` behavior, error-path shape, `calculate_trip_duration` logic, and `convert_currency` with mocked HTTP responses.
 
 ## Project Structure
 
@@ -142,12 +160,20 @@ travel-agent/
 ├── docker-compose.yml      # Travel assistant + Phoenix co-container
 ├── Dockerfile
 ├── .env.example
+├── eval/
+│   ├── run_queries.py            # Send 10 test queries to generate traces
+│   ├── evaluate_frustration.py   # Offline user frustration evaluator
+│   └── spans/
+│       ├── raw_spans.csv                 # Exported Phoenix root spans
+│       └── frustration_eval_results.csv  # Per-span frustration labels + explanations
+├── tests/
+│   └── test_tools.py             # Structured output + tool logic tests
 └── travel-assistant/
     ├── agent.py                  # LangGraph graph definition
     ├── api.py                    # FastAPI server + Phoenix tracing setup
-    ├── evaluate_frustration.py   # Offline user frustration evaluator
     ├── DESIGN-CHANGES.md         # Tool issues and design decisions log
     └── tools/
+        ├── models.py             # Pydantic result models for all tools
         ├── weather.py
         ├── climate.py
         ├── attractions.py

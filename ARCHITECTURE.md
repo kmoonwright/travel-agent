@@ -4,104 +4,132 @@
 
 ## 1. System Topology
 
-```mermaid
-graph TD
-    Client["Client"]
+```
+                         Docker Compose
+  +----------------------------------------------------------+
+  |                                                          |
+  |  +------------------------+    +---------------------+  |
+  |  |  travel-assistant      |    |  phoenix            |  |
+  |  |  :8000                 |    |  :6006  (UI)        |  |
+  |  |                        |    |  :4317  (OTLP gRPC) |  |
+  |  |  FastAPI               |    |                     |  |
+  |  |  LangGraph Agent       | -- |  Phoenix UI         |  |
+  |  |  OTel SDK  ------------|----|--> OTLP receiver    |  |
+  |  |                        | spans                    |  |
+  |  +------------------------+    +---------------------+  |
+  |                                         |               |
+  +------------------------------------------|--------------+
+                                             |
+                                     phoenix-data (volume)
 
-    subgraph docker ["Docker Compose"]
-        subgraph ta ["travel-assistant  :8000"]
-            API["FastAPI"]
-            Agent["LangGraph Agent"]
-            OTel["OTel SDK"]
-        end
-
-        subgraph ph ["phoenix  :6006 / :4317"]
-            PhUI["Phoenix UI"]
-            PhOTLP["OTLP gRPC receiver"]
-            PhData[("phoenix-data")]
-        end
-
-        API --> Agent
-        OTel -. "spans" .-> PhOTLP
-        PhOTLP --> PhData --> PhUI
-    end
-
-    Client -- "POST /chat" --> API
-    Client -- "browse traces" --> PhUI
-
-    style ta fill:#e8f4f8,stroke:#2196F3
-    style ph fill:#fef3e2,stroke:#FF9800
+  Client --> POST /chat       --> travel-assistant:8000
+  Client --> browse traces    --> phoenix:6006
 ```
 
 ---
 
 ## 2. API Request Lifecycle
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant F as FastAPI
-    participant P as Phoenix OTel
-    participant G as LangGraph Agent
-    participant O as GPT-4o
-    participant T as Tool
-
-    C->>F: POST /chat {message, session_id, user_id}
-    F->>P: using_attributes(session_id, user_id)
-
-    F->>G: agent.invoke(HumanMessage)
-
-    loop until no tool_calls
-        G->>O: invoke([SystemMessage] + messages)
-        O-->>G: AIMessage
-
-        G->>T: tool.invoke(args)
-        T-->>G: TravelToolResult (JSON)
-        G->>G: append ToolMessage
-    end
-
-    G-->>F: final AIMessage.content
-    F-->>C: {response: "..."}
+```
+  Client
+    |
+    |  POST /chat  { message, session_id, user_id }
+    v
+  FastAPI (api.py)
+    |
+    |  using_attributes(session_id, user_id)
+    |    all child spans inherit session + user context
+    |
+    |  agent.invoke(HumanMessage)
+    v
+  LangGraph Agent
+    |
+    +--[loop until no tool_calls]----------------------------+
+    |                                                        |
+    |  invoke GPT-4o with system prompt + message history   |
+    |    |                                                   |
+    |    v                                                   |
+    |  AIMessage                                             |
+    |    |                                                   |
+    |    +-- tool_calls present?                             |
+    |         |                                              |
+    |        yes --> tool.invoke(args)                       |
+    |                  |                                     |
+    |                  v                                     |
+    |               TravelToolResult (JSON)                  |
+    |                  |                                     |
+    |               append ToolMessage --> back to top       |
+    |                                                        |
+    +--[no tool_calls]----------------------------------------+
+    |
+    v
+  final AIMessage.content
+    |
+    v
+  Client  { response: "..." }
 ```
 
 ---
 
 ## 3. LangGraph Agent Graph
 
-```mermaid
-flowchart TD
-    START(["START"]) --> llm_call
-
-    llm_call["llm_call\nGPT-4o · temp=0"]
-    sc{"tool_calls?"}
-    tool_node["tool_node\ninvoke tools"]
-
-    llm_call --> sc
-    sc -- yes --> tool_node
-    tool_node --> llm_call
-    sc -- no --> END(["END"])
 ```
+  START
+    |
+    v
+  +-------------+
+  |  llm_call   |<--------------------------+
+  |  GPT-4o     |                           |
+  |  temp=0     |                           |
+  +------+------+                           |
+         |                                  |
+         v                                  |
+    tool_calls?                             |
+         |                                  |
+        yes --> +-------------+             |
+                |  tool_node  |-------------+
+                |  run tools  |
+                +-------------+
+         |
+        no
+         |
+         v
+        END
+```
+
+State: `messages: list[AnyMessage]`  — append-only, full history preserved across every loop iteration.
 
 ---
 
 ## 4. Evaluation Pipeline
 
-```mermaid
-flowchart TD
-    RQ["eval/run_queries.py\n10 queries"]
-    RQ --> API["FastAPI :8000"]
-    API --> PH[("Arize Phoenix")]
-
-    PH -- "get_spans_dataframe\nroot_spans_only=True" --> DF["LangGraph root spans\none row per trace"]
-
-    DF --> EVA["ClassificationEvaluator\nGPT-4o-mini judge\nfrustrated / ok"]
-
-    EVA --> ANN["Phoenix annotations\n(Feedback panel)"]
-    EVA --> CSV["eval/spans/*.csv"]
-    EVA -- "frustrated only" --> DS["frustrated-interactions\nPhoenix dataset"]
-
-    style PH fill:#fef3e2,stroke:#FF9800
-    style EVA fill:#e8f4f8,stroke:#2196F3
-    style DS fill:#d4edda,stroke:#28a745
-    style CSV fill:#d4edda,stroke:#28a745
+```
+  eval/run_queries.py
+    | 10 POST /chat requests
+    v
+  FastAPI :8000
+    | OTel spans
+    v
+  Arize Phoenix  (localhost:6006)
+    |
+    |  client.spans.get_spans_dataframe(root_spans_only=True)
+    |  filter: name == "LangGraph"
+    v
+  pandas DataFrame  -- one row per trace
+    |
+    |  ClassificationEvaluator
+    |  model: GPT-4o-mini
+    |  prompt: frustration signals
+    |  labels: frustrated (1.0) / ok (0.0)
+    v
+  Results DataFrame
+    |
+    +-----------------------------+----------------------------+
+    |                             |                            |
+    v                             v                            v
+  Phoenix annotations       eval/spans/               frustrated subset
+  (Feedback panel)          raw_spans.csv                     |
+  user_frustration label    frustration_eval_results.csv      v
+  on each trace                                     frustrated-interactions
+                                                    Phoenix named dataset
 ```

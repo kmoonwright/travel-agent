@@ -2,12 +2,13 @@
 Evaluate user frustration across travel-assistant traces in Phoenix.
 
 Usage:
-    poetry run python travel-assistant/evaluate_frustration.py
+    poetry run python eval/evaluate_frustration.py
 
 Connects to Phoenix at localhost:6006, fetches root LangGraph spans
 (one per trace), runs a ClassificationEvaluator (GPT-4o-mini judge) to
 detect user frustration, posts results as span annotations, and uploads
-a dataset of frustrated interactions.
+a dataset of frustrated interactions. Also exports raw spans and eval
+results to eval/spans/ as CSV files.
 """
 
 import json
@@ -18,7 +19,7 @@ from pathlib import Path
 import pandas as pd
 from dotenv import load_dotenv
 
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent.parent / "travel-assistant"))
 load_dotenv(Path(__file__).parent.parent / ".env")
 
 from phoenix.client import Client
@@ -92,6 +93,13 @@ def main() -> None:
         print("No spans found — is the travel-assistant project in Phoenix?")
         return
 
+    # Export raw spans to CSV
+    spans_dir = Path(__file__).parent / "spans"
+    spans_dir.mkdir(exist_ok=True)
+    raw_path = spans_dir / "raw_spans.csv"
+    spans_df.to_csv(raw_path)
+    print(f"Exported {len(spans_df)} raw spans to {raw_path}")
+
     # --- 2. Build eval DataFrame ----------------------------------------------
     records = []
     for span_id, row in spans_df.iterrows():
@@ -154,7 +162,7 @@ def main() -> None:
         session = str(row.get("session_id", ""))[:35]
         print(f"  [{tag}]  {session}")
 
-    # --- 5. Create dataset of frustrated interactions -------------------------
+    # --- 5. Export evaluation results to CSV ----------------------------------
     results["_label"] = results["user_frustration_score"].apply(
         lambda s: (s or {}).get("label", "ok")
     )
@@ -165,8 +173,22 @@ def main() -> None:
         lambda s: (s or {}).get("explanation", "")
     )
 
+    export_df = results[[
+        "span_id", "session_id", "user_id",
+        "user_message", "agent_response",
+        "_label", "_score", "_explanation",
+    ]].rename(columns={
+        "_label": "frustration_label",
+        "_score": "frustration_score",
+        "_explanation": "frustration_explanation",
+    })
+    eval_path = spans_dir / "frustration_eval_results.csv"
+    export_df.to_csv(eval_path, index=False)
+    print(f"\nExported evaluation results to {eval_path}")
+
+    # --- 6. Create dataset of frustrated interactions -------------------------
     frustrated = results[results["_label"] == "frustrated"].copy()
-    print(f"\n{len(frustrated)} / {len(results)} spans classified as frustrated")
+    print(f"{len(frustrated)} / {len(results)} spans classified as frustrated")
 
     if not frustrated.empty:
         dataset_df = frustrated[[

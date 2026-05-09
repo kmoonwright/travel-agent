@@ -20,6 +20,9 @@ build/
 # macOS
 .DS_Store
 
+# Personal speaker notes — not part of the repo submission
+/PRESENTATION.md
+
 # Test cache
 .pytest_cache/
 

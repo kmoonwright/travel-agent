@@ -1,0 +1,32 @@
+services:
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    ports:
+      - "6006:6006"   # Phoenix UI + OTLP HTTP collector
+      - "4317:4317"   # OTLP gRPC collector
+    environment:
+      PHOENIX_WORKING_DIR: /mnt/data
+    volumes:
+      - phoenix-data:/mnt/data
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:6006/healthz')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+
+  travel-assistant:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      PHOENIX_COLLECTOR_ENDPOINT: http://phoenix:6006
+    depends_on:
+      phoenix:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  phoenix-data:

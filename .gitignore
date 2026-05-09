@@ -1,0 +1,24 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+
+# Build artifacts
+dist/
+build/
+
+# Editors
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+
+# Installed skills (reproduced via skills-lock.json)
+.agents/

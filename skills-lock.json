@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "phoenix-tracing": {
+      "source": "Arize-ai/phoenix",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/phoenix-tracing/SKILL.md",
+      "computedHash": "6254a7a562de9e528acf2017d88aab3d324e00e75b70118284e7ed1da045a811"
+    }
+  }
+}

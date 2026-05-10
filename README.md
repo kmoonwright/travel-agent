@@ -117,7 +117,7 @@ When `search_attractions` or `search_restaurants` falls back from Overpass to Du
 
 ### Generate traces
 
-Send 10 diverse queries to generate Phoenix traces:
+Send 20 diverse queries — 14 realistic traveler interactions and 6 intentionally frustrated users — each as its own independent trace with a unique `session_id` and `user_id` persona:
 
 ```bash
 poetry run python eval/run_queries.py
@@ -144,6 +144,22 @@ poetry run python eval/evaluate_frustration.py
 
 **Output:** Binary label (`frustrated` / `ok`) with score 1.0 / 0.0. Annotations appear in the Phoenix trace Feedback panel. Frustrated traces are exported to a named `frustrated-interactions` dataset ready for prompt iteration, fine-tuning data, or human review.
 
+### Run the quality evaluator
+
+```bash
+poetry run python eval/evaluate_quality.py
+```
+
+Runs two `ClassificationEvaluator` judges (GPT-4o-mini) in a single pass and posts two annotations per span:
+
+- **`helpfulness`** — did the agent actually answer the question with specific, actionable information, or did it deflect with clarifying questions and generic advice? Labels: `helpful` (1.0) / `unhelpful` (0.0). Input: full conversation.
+
+- **`wonder`** — does the response reflect the adventure-first system prompt? Does it open with something vivid and specific and include an unexpected recommendation, or is it a dry fact-dump? Labels: `wonder` (1.0) / `flat` (0.0). Input: agent response only. Short functional responses (exchange rates, time lookups) are acceptable and score `wonder` by default.
+
+Results are saved to `eval/spans/quality_eval_results.csv` and visible in the Phoenix UI Feedback panel alongside the `user_frustration` annotation.
+
+**Why separate from frustration:** Frustration is a user-signal (how the traveler felt). Helpfulness and wonder are agent-signals (did the agent do its job and embody its personality). The three annotations together give a fuller picture: a frustrated user paired with `unhelpful`+`flat` points to a systemic problem; a frustrated user paired with `helpful`+`wonder` may just be a difficult request.
+
 ## Testing
 
 ```bash
@@ -161,11 +177,13 @@ travel-agent/
 ├── Dockerfile
 ├── .env.example
 ├── eval/
-│   ├── run_queries.py            # Send 10 test queries to generate traces
+│   ├── run_queries.py            # Send 20 test queries (14 normal, 6 frustrated personas)
 │   ├── evaluate_frustration.py   # Offline user frustration evaluator
+│   ├── evaluate_quality.py       # Helpfulness + wonder adherence evaluators
 │   └── spans/
-│       ├── raw_spans.csv                 # Exported Phoenix root spans
-│       └── frustration_eval_results.csv  # Per-span frustration labels + explanations
+│       ├── raw_spans.csv                  # Exported Phoenix root spans
+│       ├── frustration_eval_results.csv   # Per-span frustration labels + explanations
+│       └── quality_eval_results.csv       # Per-span helpfulness + wonder labels
 ├── tests/
 │   └── test_tools.py             # Structured output + tool logic tests
 └── travel-assistant/

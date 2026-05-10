@@ -206,6 +206,40 @@ Created an `eval/` directory at the project root with three files:
 
 ---
 
+## Issue 9 — Eval query dataset was too small and homogeneous
+
+### What was missing
+
+`run_queries.py` sent 10 happy, well-formed travel queries all sharing a single `session_id` — they appeared as one session in Phoenix and provided no adversarial signal for the frustration evaluator to classify.
+
+### Fix
+
+Expanded to 20 queries with a per-query `session_id` and `user_id` persona (`user-01` through `user-20`), so each interaction appears as its own independent trace in Phoenix. 14 queries cover the full tool surface with realistic traveler requests. 6 queries simulate frustrated users using signals the evaluator detects: ALL CAPS emphasis, references to repeated failures ("I've asked THREE TIMES"), ultimatums ("I'm going back to Google"), and demands with no tolerance for alternatives. The stratified design ensures the frustration evaluator has enough adversarial examples to produce meaningful label distributions.
+
+**Files changed:** `eval/run_queries.py`
+
+---
+
+## Issue 10 — No evaluation of agent output quality or system prompt adherence
+
+### What was missing
+
+The frustration evaluator measures how the user felt, but gives no signal about whether the agent actually answered the question or whether the new adventure/wonder system prompt is working as designed.
+
+### Fix
+
+Added `eval/evaluate_quality.py` with two `ClassificationEvaluator` judges running in a single `evaluate_dataframe()` call:
+
+**`helpfulness`** — did the agent answer with specific, actionable information, or deflect with clarifying questions and generic advice? Catches a known failure mode of the new question-asking personality: a frustrated user demanding a direct answer who gets more questions instead. Input: full conversation (`User: … / Assistant: …`).
+
+**`wonder`** — does the response lead with something vivid and specific and include an unexpected recommendation, directly testing system prompt adherence on destination queries? Short functional responses (exchange rates, time lookups) pass by default. Input: agent response only — the user message isn't relevant to voice quality.
+
+Both post annotations to Phoenix alongside `user_frustration`, export to `eval/spans/quality_eval_results.csv`, and are designed to be re-run after any system prompt change as a quick regression signal.
+
+**Files changed:** `eval/evaluate_quality.py` (new)
+
+---
+
 ## Issue 8 — System prompt was task-oriented rather than traveler-centered
 
 ### What was missing
@@ -241,3 +275,5 @@ Existing tool-use guidance (weather vs. seasonal climate, always call advisory t
 | All tools | String return values opaque to downstream consumers | `tools/models.py` — Pydantic `TravelToolResult` base with `exclude_none` JSON `__str__`; 11 typed return models |
 | Eval + spans | Evaluator buried in application package; no local span export | `eval/` directory: `run_queries.py`, `evaluate_frustration.py`, `eval/spans/*.csv` committed |
 | System prompt | Generic, task-oriented instructions; no traveler personalization or voice | Rewritten around adventure/wonder philosophy: ask 1–2 questions first, lead with vivid opening, always recommend the unexpected |
+| Eval dataset | 10 homogeneous happy queries under one shared session | 20 queries with per-trace session/user IDs; 6 intentional frustrated-user personas for adversarial signal |
+| Eval coverage | Only frustration measured (user signal) | Added `helpfulness` + `wonder` evaluators (agent signal); all three annotations posted per span |

@@ -3,7 +3,6 @@ services:
     image: arizephoenix/phoenix:latest
     ports:
       - "6006:6006"   # Phoenix UI + OTLP HTTP collector
-      - "4317:4317"   # OTLP gRPC collector
     environment:
       PHOENIX_WORKING_DIR: /mnt/data
     volumes:

@@ -206,6 +206,28 @@ Created an `eval/` directory at the project root with three files:
 
 ---
 
+## Issue 8 — System prompt was task-oriented rather than traveler-centered
+
+### What was missing
+
+The agent answered questions accurately but treated every interaction the same way — a query in, facts out. It had no concept of who the traveler was, no mechanism for personalizing responses, and no voice beyond "be helpful and practical."
+
+### Fix
+
+Complete rewrite of `SYSTEM_PROMPT` in `agent.py` around three principles:
+
+1. **Learn the traveler first.** When a destination is mentioned, ask 1–2 natural questions (who they're traveling with, first time there, what drew them) before jumping to information. Use what's learned to personalize every response that follows. The LangGraph `MessagesState` accumulates messages via `operator.add`, so context learned in one turn is available in all subsequent turns — no state changes required.
+
+2. **Lead with wonder.** Open destination responses with something vivid and specific — the detail most people miss, what makes this place unlike anywhere else — before presenting practical information. Practical facts are framed as tools for the adventure, not a checklist.
+
+3. **Always surface one unexpected recommendation.** Alongside the well-known, include one thing most guidebooks miss: a neighborhood, a market day, a lesser-known viewpoint.
+
+Existing tool-use guidance (weather vs. seasonal climate, always call advisory tool, geocode before searching) is preserved verbatim, now framed as part of serving the traveler's experience rather than just factual accuracy.
+
+**Files changed:** `agent.py`
+
+---
+
 ## Summary table
 
 | Area | Issue | Fix |
@@ -218,3 +240,4 @@ Created an `eval/` directory at the project root with three files:
 | Evaluation | No post-hoc evaluation of user experience | `evaluate_frustration.py` — GPT-4o-mini `ClassificationEvaluator` scores every trace; annotations + frustrated-interactions dataset created in Phoenix |
 | All tools | String return values opaque to downstream consumers | `tools/models.py` — Pydantic `TravelToolResult` base with `exclude_none` JSON `__str__`; 11 typed return models |
 | Eval + spans | Evaluator buried in application package; no local span export | `eval/` directory: `run_queries.py`, `evaluate_frustration.py`, `eval/spans/*.csv` committed |
+| System prompt | Generic, task-oriented instructions; no traveler personalization or voice | Rewritten around adventure/wonder philosophy: ask 1–2 questions first, lead with vivid opening, always recommend the unexpected |

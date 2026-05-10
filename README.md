@@ -99,7 +99,7 @@ User message
 
 **State** is an append-only `list[AnyMessage]`. Each `llm_call` prepends the system prompt and invokes GPT-4o with all 11 tools bound. If the model returns tool calls, `tool_node` executes each one and appends the results as `ToolMessage` objects. The loop continues until the model returns a plain text response.
 
-The system prompt instructs the model when to use each tool — for example, using `get_seasonal_climate` (historical archive) instead of `get_weather` (7-day forecast) for trips more than a week out, and always calling `get_travel_advisory` for any destination regardless of perceived safety level.
+The system prompt defines the agent's philosophy: lead every destination response with something vivid and specific, ask one or two natural questions to understand who the traveler is before diving into logistics, and always surface one unexpected recommendation alongside the obvious ones. Practical tool guidance is preserved — `get_seasonal_climate` for trips more than a week out, `get_travel_advisory` for every destination regardless of perceived safety — but framed as tools in service of the experience, not the goal itself.
 
 ## Observability
 

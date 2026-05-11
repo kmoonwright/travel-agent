@@ -22,7 +22,7 @@ docker compose up
 
 | Service | URL | Purpose |
 |---------|-----|---------|
-| Travel Assistant | http://localhost:8000 | API |
+| Travel Assistant | http://localhost:8000 | API + web UI |
 | Phoenix UI | http://localhost:6006 | Trace observability |
 
 ## Running locally (no Docker)
@@ -59,8 +59,10 @@ curl -X POST http://localhost:8000/chat \
 
 `session_id` and `user_id` are optional. A UUID is auto-generated for `session_id` if omitted.
 
+### GET / — web UI (demo chat interface, served from `static/index.html`)
 ### GET /tools — list available tools with descriptions
 ### GET /health — health check
+### GET /config — Phoenix project ID for client-side deep-link support
 
 ## Tools
 
@@ -180,6 +182,7 @@ travel-agent/
 │   ├── run_queries.py            # Send 20 test queries (14 normal, 6 frustrated personas)
 │   ├── evaluate_frustration.py   # Offline user frustration evaluator
 │   ├── evaluate_quality.py       # Helpfulness + wonder adherence evaluators
+│   ├── utils.py                  # Shared helpers and constants for eval scripts
 │   └── spans/
 │       ├── raw_spans.csv                  # Exported Phoenix root spans
 │       ├── frustration_eval_results.csv   # Per-span frustration labels + explanations
@@ -190,6 +193,8 @@ travel-agent/
     ├── agent.py                  # LangGraph graph definition
     ├── api.py                    # FastAPI server + Phoenix tracing setup
     ├── DESIGN-CHANGES.md         # Tool issues and design decisions log
+    ├── static/
+    │   └── index.html            # Demo web UI
     └── tools/
         ├── models.py             # Pydantic result models for all tools
         ├── weather.py

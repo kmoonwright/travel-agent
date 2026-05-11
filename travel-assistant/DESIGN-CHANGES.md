@@ -262,6 +262,38 @@ Existing tool-use guidance (weather vs. seasonal climate, always call advisory t
 
 ---
 
+## Issue 11 — No web UI for manual testing
+
+### What was missing
+
+All interaction with the agent required `curl` or a REST client. There was no browser-based interface for exploratory testing or demos.
+
+### Fix
+
+Added `travel-assistant/static/index.html` — a single-file chat UI served directly by FastAPI. `api.py` now:
+- Mounts `static/` at `/static` via `StaticFiles`
+- Redirects `GET /` → `/static/index.html`
+- Adds `CORSMiddleware` (`allow_origins=["*"]`) for local development
+- Adds `GET /config` that proxies the Phoenix project ID from the local Phoenix server, so the UI can construct deep-link URLs to individual traces without browser CORS restrictions
+
+**Files changed:** `api.py`, `static/index.html` (new)
+
+---
+
+## Issue 12 — Eval helper functions duplicated across scripts
+
+### What was missing
+
+`_extract_user_message()`, `_extract_agent_response()`, and the annotation-posting logic were copy-pasted identically into both `evaluate_frustration.py` and `evaluate_quality.py`. `PHOENIX_URL`, `PROJECT_NAME`, and `EVAL_MODEL` constants were also duplicated. Both files contained an unused `import os`.
+
+### Fix
+
+Created `eval/utils.py` with the shared constants and three helper functions. Both evaluator scripts import from it. Removed the unused `import os` statements from both files.
+
+**Files changed:** `eval/utils.py` (new), `eval/evaluate_frustration.py`, `eval/evaluate_quality.py`
+
+---
+
 ## Summary table
 
 | Area | Issue | Fix |
@@ -277,3 +309,5 @@ Existing tool-use guidance (weather vs. seasonal climate, always call advisory t
 | System prompt | Generic, task-oriented instructions; no traveler personalization or voice | Rewritten around adventure/wonder philosophy: ask 1–2 questions first, lead with vivid opening, always recommend the unexpected |
 | Eval dataset | 10 homogeneous happy queries under one shared session | 20 queries with per-trace session/user IDs; 6 intentional frustrated-user personas for adversarial signal |
 | Eval coverage | Only frustration measured (user signal) | Added `helpfulness` + `wonder` evaluators (agent signal); all three annotations posted per span |
+| Web UI | No browser interface; required curl for all testing | `static/index.html` chat UI; FastAPI serves it at `/`; `/config` proxies Phoenix project ID |
+| Eval scripts | Helper functions and constants duplicated across evaluators | `eval/utils.py` extracts shared code; removes unused `import os` from both files |

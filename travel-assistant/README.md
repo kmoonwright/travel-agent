@@ -72,6 +72,10 @@ curl -X POST http://localhost:8001/chat \
   -d '{"message": "I want to visit Tokyo in June. What should I know about weather, top attractions, and the USD to JPY exchange rate?"}'
 ```
 
+### `GET /`
+
+Redirects to the demo web UI at `/static/index.html`.
+
 ### `GET /health`
 
 Health check. Returns `{"status": "ok"}`.
@@ -79,6 +83,10 @@ Health check. Returns `{"status": "ok"}`.
 ### `GET /tools`
 
 Lists all available tools with their names and descriptions. Useful for understanding the agent's capabilities.
+
+### `GET /config`
+
+Returns `{"phoenix_project_id": "<id>"}` — proxies the Phoenix project ID so the web UI can construct deep links to traces without hitting Phoenix directly from the browser (avoids CORS issues in development).
 
 ---
 
@@ -131,7 +139,8 @@ All tools are `@tool`-decorated functions in `tools/`. The LLM reads each tool's
 | Tool | Source file | API used | Requires key |
 |------|-------------|----------|:---:|
 | `geocode_location` | `tools/geo.py` | Nominatim (OpenStreetMap) | No |
-| `get_weather` | `tools/weather.py` | Open-Meteo + Nominatim | No |
+| `get_weather` | `tools/weather.py` | Open-Meteo forecast + Nominatim | No |
+| `get_seasonal_climate` | `tools/climate.py` | Open-Meteo archive + Nominatim | No |
 | `search_attractions` | `tools/attractions.py` | Overpass API (OpenStreetMap) | No |
 | `search_restaurants` | `tools/restaurants.py` | Overpass API (OpenStreetMap) | No |
 | `convert_currency` | `tools/currency.py` | open.er-api.com | No |
@@ -143,9 +152,11 @@ All tools are `@tool`-decorated functions in `tools/`. The LLM reads each tool's
 
 **Tool details:**
 
-- **`geocode_location`** — Resolves a place name or address to coordinates, country, and display name. Also provides the internal `_geocode()` helper used by four other tools.
+- **`geocode_location`** — Resolves a place name or address to coordinates, country, and display name. Also provides the internal `_geocode()` helper used by five other tools.
 
-- **`get_weather`** — Returns current conditions and a 7-day forecast including temperatures, precipitation, and WMO weather condition descriptions. Supports Celsius or Fahrenheit.
+- **`get_weather`** — Returns current conditions and a 7-day forecast including temperatures, precipitation, and WMO weather condition descriptions. Supports Celsius or Fahrenheit. Use for trips within the next 7 days.
+
+- **`get_seasonal_climate`** — Fetches the previous year's actual daily data from Open-Meteo's archive API for a given city and month, returning average highs/lows, total precipitation, and rainy-day count. Use for trip planning more than 7–10 days out.
 
 - **`search_attractions`** — Queries OpenStreetMap for tourism and historic POIs within a configurable radius. Falls back to DuckDuckGo if Overpass returns no results or is unavailable.
 

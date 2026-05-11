@@ -75,7 +75,7 @@
 
 ```
   ┌─────────────────────┐
-  │  eval/run_queries   │  10 POST /chat requests
+  │  eval/run_queries   │  20 POST /chat requests (14 normal + 6 frustrated personas)
   └──────────┬──────────┘
              │
              ▼
@@ -91,24 +91,27 @@
                                    ┌──────────────────────────┐
                                    │  pandas DataFrame        │
                                    │  one row per trace       │
-                                   └──────────────┬───────────┘
-                                                  │
-                                                  ▼
-                                   ┌──────────────────────────┐
-                                   │  ClassificationEvaluator │
-                                   │  model: GPT-4o-mini      │
-                                   │  frustrated / ok         │
-                                   └──────┬───────────────────┘
-                                          │
-                 ┌────────────────────────┼────────────────────┐
-                 ▼                        ▼                    ▼
-  ┌──────────────────────┐  ┌─────────────────────┐  ┌────────────────────┐
-  │  Phoenix annotations │  │  eval/spans/*.csv   │  │  frustrated subset │
-  │  Feedback panel      │  │  raw_spans.csv      │  │         │          │
-  │  per-span label      │  │  frustration_eval   │  │         ▼          │
-  │  + explanation       │  │  _results.csv       │  │  frustrated-       │
-  └──────────────────────┘  └─────────────────────┘  │  interactions      │
-                                                     │  Phoenix dataset   │
-                                                     └────────────────────┘
+                                   └──────┬─────────┬─────────┘
+                                          │         │
+                              ┌───────────┘         └───────────┐
+                              ▼                                 ▼
+               ┌──────────────────────────┐   ┌──────────────────────────┐
+               │  evaluate_frustration.py │   │  evaluate_quality.py     │
+               │  ClassificationEvaluator │   │  ClassificationEvaluator │
+               │  frustrated / ok         │   │  helpfulness: helpful /  │
+               │                          │   │    unhelpful             │
+               └──────────┬───────────────┘   │  wonder: wonder / flat   │
+                          │                   └──────────┬───────────────┘
+                          │                              │
+                 ┌────────┴──────────────────────────────┤
+                 ▼                        ▼              ▼
+  ┌──────────────────────┐  ┌──────────────────────┐  ┌────────────────────┐
+  │  Phoenix annotations │  │  eval/spans/*.csv    │  │  frustrated subset │
+  │  Feedback panel      │  │  raw_spans.csv       │  │         │          │
+  │  user_frustration    │  │  frustration_eval    │  │         ▼          │
+  │  helpfulness         │  │    _results.csv      │  │  frustrated-       │
+  │  wonder              │  │  quality_eval        │  │  interactions      │
+  └──────────────────────┘  │    _results.csv      │  │  Phoenix dataset   │
+                            └──────────────────────┘  └────────────────────┘
 ```
 

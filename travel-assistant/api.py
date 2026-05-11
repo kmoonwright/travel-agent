@@ -3,6 +3,8 @@ import sys
 import uuid
 from pathlib import Path
 
+import requests
+
 sys.path.insert(0, str(Path(__file__).parent))
 
 from dotenv import load_dotenv
@@ -23,6 +25,9 @@ if os.getenv("PHOENIX_COLLECTOR_ENDPOINT"):
     )
 
 from fastapi import FastAPI  # noqa: E402
+from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
+from fastapi.responses import RedirectResponse  # noqa: E402
+from fastapi.staticfiles import StaticFiles  # noqa: E402
 from langchain_core.messages import HumanMessage  # noqa: E402
 from pydantic import BaseModel  # noqa: E402
 
@@ -36,6 +41,20 @@ app = FastAPI(
     description="A LangGraph travel assistant with tools for weather, attractions, flights, hotels, currency, and more.",
     version="1.0.0",
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
+)
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+@app.get("/")
+def root():
+    return RedirectResponse(url="/static/index.html")
 
 
 class ChatRequest(BaseModel):
@@ -57,6 +76,22 @@ def chat(request: ChatRequest):
     with using_attributes(**attrs):
         result = agent.invoke({"messages": [HumanMessage(content=request.message)]})
     return ChatResponse(response=result["messages"][-1].content)
+
+
+@app.get("/config")
+def config():
+    """Return client config including Phoenix project ID (proxied to avoid CORS)."""
+    phoenix_endpoint = os.getenv("PHOENIX_COLLECTOR_ENDPOINT")
+    project_id = None
+    if phoenix_endpoint:
+        try:
+            resp = requests.get(f"{phoenix_endpoint}/v1/projects", timeout=3)
+            project = next((p for p in resp.json()["data"] if p["name"] == "travel-assistant"), None)
+            if project:
+                project_id = project["id"]
+        except Exception:
+            pass
+    return {"phoenix_project_id": project_id}
 
 
 @app.get("/health")

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Assistant</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f0f4f8;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #0d7377;
+      color: #fff;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    header h1 { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.02em; }
+
+    #header-right { display: flex; align-items: center; gap: 12px; }
+
+    #demo-btn {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    #demo-btn:hover:not(:disabled) { background: rgba(255,255,255,0.25); }
+    #demo-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    #phoenix-link {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      transition: color 0.15s;
+    }
+    #phoenix-link:hover { color: #fff; }
+
+    #demo-status {
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: 0.8rem;
+      padding: 6px 16px;
+      text-align: center;
+      display: none;
+      flex-shrink: 0;
+      border-bottom: 1px solid #c8e6c9;
+    }
+
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .message {
+      max-width: 75%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      position: relative;
+    }
+
+    .message.user {
+      align-self: flex-end;
+      background: #0d7377;
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .message.assistant {
+      align-self: flex-start;
+      background: #fff;
+      color: #1a1a1a;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .message.assistant p { margin-bottom: 0.5em; }
+    .message.assistant p:last-child { margin-bottom: 0; }
+    .message.assistant ul, .message.assistant ol { padding-left: 1.2em; margin-bottom: 0.5em; }
+    .message.assistant li { margin-bottom: 0.2em; }
+    .message.assistant strong { font-weight: 600; }
+    .message.assistant h1, .message.assistant h2, .message.assistant h3 {
+      font-size: 1em; font-weight: 600; margin-bottom: 0.4em;
+    }
+
+    .typing-indicator {
+      align-self: flex-start;
+      background: #fff;
+      border-radius: 14px;
+      border-bottom-left-radius: 4px;
+      padding: 12px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .typing-indicator span {
+      width: 7px; height: 7px;
+      background: #b0bec5;
+      border-radius: 50%;
+      animation: bounce 1.2s infinite;
+    }
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-5px); }
+    }
+
+    #input-area {
+      padding: 12px 16px;
+      background: #fff;
+      border-top: 1px solid #e0e0e0;
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    #input {
+      flex: 1;
+      border: 1px solid #cfd8dc;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      resize: none;
+      outline: none;
+      max-height: 140px;
+      line-height: 1.5;
+      transition: border-color 0.15s;
+    }
+    #input:focus { border-color: #0d7377; }
+
+    #send-btn {
+      background: #0d7377;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+      flex-shrink: 0;
+      height: 42px;
+    }
+    #send-btn:hover:not(:disabled) { background: #0a5c60; }
+    #send-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>✈️ Travel Assistant</h1>
+  <div id="header-right">
+    <button id="demo-btn">▶ Auto Demo</button>
+    <a id="phoenix-link" href="http://localhost:6006" target="_blank">Phoenix →</a>
+  </div>
+</header>
+
+<div id="demo-status"></div>
+
+<div id="messages"></div>
+
+<div id="input-area">
+  <textarea id="input" rows="1" placeholder="Ask me anything about travel…"></textarea>
+  <button id="send-btn">Send</button>
+</div>
+
+<script>
+  const API = 'http://localhost:8000';
+  const PHOENIX_BASE = 'http://localhost:6006';
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('input');
+  const sendBtn = document.getElementById('send-btn');
+  const demoBtn = document.getElementById('demo-btn');
+  const demoStatus = document.getElementById('demo-status');
+
+  const SESSION_ID = 'sess-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+  let phoenixProjectUrl = PHOENIX_BASE;
+  let inFlight = false;
+
+  const DEMO_QUERIES = [
+    { text: "What's the weather like in Tokyo this weekend? I'm thinking of a quick trip.", session: 'main', userId: 'demo-user' },
+    { text: "I'm flying from NYC to Tokyo in early April, 2 passengers economy class. What flights are available?", session: 'main', userId: 'demo-user' },
+    { text: "Can you find hotels in Tokyo from April 5 to April 10 for 2 guests? Budget around $150 per night.", session: 'main', userId: 'demo-user' },
+    { text: "What's the current USD to Japanese Yen exchange rate?", session: 'main', userId: 'demo-user' },
+    { text: "Any good ramen spots near Shinjuku, Tokyo?", session: 'main', userId: 'demo-user' },
+    { text: "I've asked you THREE TIMES about cheap flights and you keep giving me completely generic results. I need ACTUAL prices, not 'check booking sites'!", session: 'frustrated', userId: 'demo-user' },
+  ];
+
+  async function fetchPhoenixProjectUrl() {
+    try {
+      const res = await fetch(`${API}/config`);
+      const data = await res.json();
+      if (data.phoenix_project_id) {
+        phoenixProjectUrl = `${PHOENIX_BASE}/projects/${data.phoenix_project_id}`;
+        document.getElementById('phoenix-link').href = phoenixProjectUrl;
+      }
+    } catch (_) {}
+  }
+
+  function appendMessage(role, text) {
+    const div = document.createElement('div');
+    div.className = `message ${role}`;
+    if (role === 'assistant') {
+      div.innerHTML = DOMPurify.sanitize(marked.parse(text));
+    } else {
+      div.textContent = text;
+    }
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function showTyping() {
+    const el = document.createElement('div');
+    el.className = 'typing-indicator';
+    el.id = 'typing';
+    el.innerHTML = '<span></span><span></span><span></span>';
+    messagesEl.appendChild(el);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function removeTyping() {
+    document.getElementById('typing')?.remove();
+  }
+
+  async function sendMessage(text, sessionId, userId = null) {
+    showTyping();
+    try {
+      const res = await fetch(`${API}/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, session_id: sessionId, user_id: userId }),
+      });
+      const data = await res.json();
+      removeTyping();
+      appendMessage('assistant', data.response);
+    } catch (_) {
+      removeTyping();
+      appendMessage('assistant', '_Error: could not reach the travel assistant API._');
+    }
+  }
+
+  async function handleSend() {
+    const text = inputEl.value.trim();
+    if (!text || inFlight) return;
+    inputEl.value = '';
+    inputEl.style.height = 'auto';
+    inFlight = true;
+    sendBtn.disabled = true;
+    appendMessage('user', text);
+    await sendMessage(text, SESSION_ID);
+    inFlight = false;
+    sendBtn.disabled = false;
+    inputEl.focus();
+  }
+
+  async function runDemo() {
+    demoBtn.disabled = true;
+    sendBtn.disabled = true;
+    const mainSess = 'demo-' + Date.now();
+    const frustSess = 'demo-frustrated-' + Date.now();
+
+    for (let i = 0; i < DEMO_QUERIES.length; i++) {
+      const q = DEMO_QUERIES[i];
+      demoStatus.style.display = 'block';
+      demoStatus.textContent = `Demo running… (${i + 1}/${DEMO_QUERIES.length})`;
+      const sid = q.session === 'main' ? mainSess : frustSess;
+      appendMessage('user', q.text);
+      await sendMessage(q.text, sid, q.userId);
+      if (i < DEMO_QUERIES.length - 1) {
+        await new Promise(r => setTimeout(r, 2500));
+      }
+    }
+
+    const a = document.createElement('a');
+    a.href = phoenixProjectUrl;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.style.cssText = 'color:#1b5e20;font-weight:600;';
+    a.textContent = 'View traces in Phoenix →';
+    demoStatus.textContent = 'Demo complete! ';
+    demoStatus.appendChild(a);
+
+    demoBtn.disabled = false;
+    sendBtn.disabled = false;
+  }
+
+  sendBtn.addEventListener('click', handleSend);
+
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  });
+
+  inputEl.addEventListener('input', () => {
+    inputEl.style.height = 'auto';
+    inputEl.style.height = Math.min(inputEl.scrollHeight, 140) + 'px';
+  });
+
+  demoBtn.addEventListener('click', runDemo);
+
+  fetchPhoenixProjectUrl();
+</script>
+</body>
+</html>

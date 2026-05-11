@@ -1,445 +1,130 @@
 span_id,session_id,user_id,user_message,agent_response,frustration_label,frustration_score,frustration_explanation
-ec5602e0ac988754,f612934e-2e3b-4540-8bf9-f0b388b3b3f9,user-20,Nothing you've told me about Santorini hotels has been helpful. Real prices? None. Specific availability? None. I'm going back to Google.,"I understand how frustrating it can be when you're trying to plan a trip and can't find the specific information you need. Let's make sure you have everything you need for Santorini. Are you traveling solo, with family, or perhaps on a romantic getaway? Knowing a bit more about your trip can help me tailor the hotel search to your needs. Also, could you share your travel dates and budget per night? This way, I can find real-time availability and prices for you.",frustrated,1.0,"The user explicitly stated that nothing the assistant provided was helpful and expressed their intention to switch to another service, indicating a clear level of frustration with the current interaction."
-3aa0b92ec8481bfa,97832bea-fd98-4e47-97c2-ff59bdcbcb32,user-19,"Stop asking me about my 'travel style' and just tell me what to do in Barcelona. I'm not here for therapy, I'm here for information.","The current travel advisory for Spain suggests exercising increased caution, primarily due to concerns about terrorism. However, the security conditions are stable, and there are no significant changes from previous assessments. Here are a few key points to keep in mind:
+e81f22b7e1dcb6f0,353225f6-42f7-4143-8b19-fca311ee619c,user-20,Nothing you've told me about Santorini hotels has been helpful. Real prices? None. Specific availability? None. I'm going back to Google.,"I understand how frustrating it can be when you're trying to plan a trip and can't find the specific information you need. Let's make sure you have everything you need for Santorini. Could you tell me your travel dates and how many guests will be staying? That way, I can find real-time availability and prices for you.",frustrated,1.0,"The user expressed clear dissatisfaction with the information provided about Santorini hotels, stating it was not helpful and indicating an intention to revert to another service (Google). This behavior aligns with signs of frustration such as explicit complaints and negative comparisons."
+99460af8726c7775,67206035-f7c8-449f-9d10-afd7be71c945,user-19,"Stop asking me about my 'travel style' and just tell me what to do in Barcelona. I'm not here for therapy, I'm here for information.","When traveling to Barcelona, it's important to exercise increased caution due to risks of terrorism and civil unrest, particularly in tourist hotspots. Pickpocketing is also a common issue, so stay vigilant, especially in crowded areas like La Rambla and the Gothic Quarter.
 
-- **Entry Requirements**: Make sure to check the latest entry requirements, including any updates on the European Entry-Exit System (EES).
-- **Safety and Security**: Stay informed about local laws and customs, and always be aware of your surroundings, especially in crowded areas.
-- **Health**: It's advisable to check vaccination recommendations at least eight weeks before your trip.
+For entry requirements, make sure to check the latest updates on the European Entry-Exit System (EES) if you're traveling from the UK or other non-EU countries. It's always a good idea to review any vaccination recommendations well in advance of your trip.
 
-With this information, you can enjoy your adventure in Barcelona with peace of mind. If you need more specific recommendations or have any other questions, feel free to ask!",frustrated,1.0,The user explicitly expresses frustration by stating they are not interested in discussions about their 'travel style' and demands straightforward information about Barcelona. Their tone suggests impatience with the assistant's approach.
-d45bc0f5bfb2b99e,e7da5da0-4590-4065-a073-52595f4fac30,user-18,I've been planning this trip for WEEKS and every time I ask for flight options from London to Cape Town you give me the same vague nonsense. This tool is a complete waste of time.,"I'm truly sorry to hear that your experience hasn't been as helpful as it should be. Let's make sure we get you the information you need this time. 
+With these details in mind, you're all set to enjoy the vibrant culture and stunning architecture of Barcelona. Safe travels!",frustrated,1.0,"The user explicitly expressed dissatisfaction with the assistant's approach by stating, ""Stop asking me about my 'travel style' and just tell me what to do in Barcelona."" This indicates frustration with the assistant's questions rather than receiving direct information. Their tone suggests impatience and a desire for straightforward guidance rather than conversation."
+3737e36015288d97,60c1bc21-c421-4449-acbe-3c6d959e9f58,user-18,I've been planning this trip for WEEKS and every time I ask for flight options from London to Cape Town you give me the same vague nonsense. This tool is a complete waste of time.,"I'm truly sorry to hear that you've been having a frustrating experience. Let's make sure we get it right this time. 
 
 Cape Town is a city that captivates with its stunning landscapes, from the iconic Table Mountain to the vibrant V&A Waterfront. It's a place where nature and culture blend seamlessly, offering experiences that are both breathtaking and enriching.
 
-Could you let me know your preferred travel dates and how many passengers will be traveling? This way, I can provide you with specific flight options that suit your plans.",frustrated,1.0,"The user expresses clear frustration throughout the conversation, stating that they've been trying for weeks with the assistant providing vague responses. This indicates a strong dissatisfaction with the service, culminating in a complaint about the tool being a waste of time."
-9a070bed47ea6e07,1a100303-9d23-445c-86b7-33a93021756d,user-17,I don't want to answer your questions about who I'm traveling with. I JUST WANT THE WEATHER in Bangkok. Can you do that or not?,"Bangkok is currently experiencing overcast skies with a temperature of 34.2°C. The humidity is at 49%, and there's a gentle breeze with a wind speed of 2.9 km/h.
+Could you let me know your preferred travel dates and how many passengers will be traveling? This way, I can provide you with specific flight options that suit your needs.",frustrated,1.0,The user explicitly stated that the tool is a complete waste of time and expressed frustration over receiving the same vague responses repeatedly. This indicates a high level of frustration rather than a neutral or satisfied state.
+5b1fb1c98469e659,51fadf7f-9c99-45a1-916b-2d6dcbb4c7d5,user-17,I don't want to answer your questions about who I'm traveling with. I JUST WANT THE WEATHER in Bangkok. Can you do that or not?,"Here's the current weather and 7-day forecast for Bangkok:
 
-Here's a look at the upcoming weather forecast for the next week:
+**Current Weather:**
+- Temperature: 28.5°C
+- Condition: Dense drizzle
+- Humidity: 82%
+- Wind Speed: 3.6 km/h
 
-- **May 10**: Thunderstorm, with a high of 35.5°C and a low of 26.6°C. Expect about 2.7 mm of rain.
-- **May 11**: Thunderstorm, high of 32.0°C and low of 25.2°C, with 7.7 mm of rain.
-- **May 12**: Thunderstorm, high of 32.0°C and low of 26.2°C, with 4.7 mm of rain.
-- **May 13**: Dense drizzle, high of 32.8°C and low of 26.8°C, with 2.9 mm of rain.
-- **May 14**: Thunderstorm, high of 32.3°C and low of 26.5°C, with 10.1 mm of rain.
-- **May 15**: Thunderstorm, high of 32.1°C and low of 26.7°C, with 20.1 mm of rain.
-- **May 16**: Thunderstorm, high of 33.3°C and low of 26.9°C, with 3.6 mm of rain.
+**7-Day Forecast:**
+- **May 11:** Thunderstorm, High 33.2°C, Low 28.4°C, Precipitation 2.1 mm
+- **May 12:** Thunderstorm, High 32.5°C, Low 26.2°C, Precipitation 2.5 mm
+- **May 13:** Light drizzle, High 32.4°C, Low 26.7°C, Precipitation 1.4 mm
+- **May 14:** Moderate showers, High 35.0°C, Low 26.8°C, Precipitation 9.4 mm
+- **May 15:** Thunderstorm, High 32.7°C, Low 26.8°C, Precipitation 15.6 mm
+- **May 16:** Thunderstorm, High 31.9°C, Low 26.0°C, Precipitation 20.1 mm
+- **May 17:** Dense drizzle, High 29.1°C, Low 25.5°C, Precipitation 14.6 mm
 
-It looks like you'll need to prepare for some wet weather, especially with thunderstorms predicted on most days. Stay dry and enjoy your time in Bangkok!",frustrated,1.0,"The user explicitly stated a desire for specific information (the weather) without wanting to answer additional questions, and their request was somewhat urgent and frustrated in tone. The demand was clear and direct, indicating a lack of patience for unnecessary interactions, which suggests frustration."
-ea708003a8c24ba4,c0a5fc7b-8fad-45ed-8d8e-2c746221148c,user-16,This is the second time I've asked about hotels in Prague and you still haven't given me anything useful. Every other travel site gives me real options. Why can't you?,"I'm truly sorry for any frustration you've experienced. Let's make sure we get it right this time. Could you tell me a bit more about your trip to Prague? Are you traveling solo, with family, or perhaps on a romantic getaway? Knowing this will help me tailor the hotel recommendations to your needs. Also, do you have specific dates or a budget in mind?",frustrated,1.0,"The user expresses frustration by mentioning this is the second time they have asked about hotels and that the previous responses have not been useful, comparing the assistant unfavorably to other travel sites. This indicates a strong level of dissatisfaction and impatience."
-16a1a944e05c6a70,e8a9ca9d-8a87-4b51-802e-d360e1aa0d86,user-15,"I've asked you THREE TIMES about cheap flights to Bali and you keep giving me generic search results. I need ACTUAL prices, not 'check booking sites' — that's completely useless.","I understand how frustrating that must be, and I'm here to help you find the best options for your trip to Bali. Could you tell me where you're flying from and your travel dates? This way, I can provide you with specific flight options and prices. Are you traveling alone or with others?",frustrated,1.0,"The user explicitly complains about the AI's inability to provide specific flight information, expresses annoyance with the generic responses received multiple times, and shows a clear demand for direct answers, indicating their frustration."
-09ecdb66145cfe9a,5b9b2db0-f02c-483f-bcdc-2326cc33dc78,user-14,"What currency should I bring to Morocco, and how much is $500 worth in dirhams?","In Morocco, you'll want to use the Moroccan Dirham (MAD) for your transactions. As of the latest exchange rate, $500 is equivalent to approximately 4,568.3 Moroccan Dirhams. 
+It looks like you'll encounter some rain and thunderstorms, so packing an umbrella or raincoat might be a good idea. Enjoy your time in Bangkok!",frustrated,1.0,The user clearly expresses frustration by insisting that they do not want to answer additional questions and demands straightforward information about the weather in Bangkok. Their tone suggests impatience and dissatisfaction with the assistant's initial inquiry.
+9ed54455107bbab2,143216b7-60dd-4bc6-b460-d9968c7d6821,user-16,This is the second time I've asked about hotels in Prague and you still haven't given me anything useful. Every other travel site gives me real options. Why can't you?,"I'm truly sorry for any frustration you've experienced. Let's make sure we get it right this time. Are you traveling alone, with family, or perhaps on a romantic getaway? Knowing a bit more about your trip can help me tailor the hotel recommendations to your needs. Also, do you have specific dates or a budget in mind? This will help me find the best options for you.",frustrated,1.0,The user expressed dissatisfaction with the AI's previous responses by stating they haven't received anything useful and compared the AI unfavorably to other travel sites. This indicates frustration due to lack of effective assistance.
+1d73f9c756132f1b,c5f666fc-09da-4470-8db0-3f16b6992709,user-15,"I've asked you THREE TIMES about cheap flights to Bali and you keep giving me generic search results. I need ACTUAL prices, not 'check booking sites' — that's completely useless.",I understand how frustrating it can be to not get the specific information you're looking for. Let's make sure we get it right this time. Could you tell me where you're flying from and your travel dates? This will help me find the most accurate flight options for you.,frustrated,1.0,The user explicitly expressed frustration by stating they have asked three times and described the responses as 'generic' and 'useless'. This indicates a clear level of irritation with the lack of specific information they are seeking.
+bd34424c608f26de,a32fef5c-b831-43ec-9af2-0aa9eec12502,user-14,"What currency should I bring to Morocco, and how much is $500 worth in dirhams?","In Morocco, you'll want to use the Moroccan Dirham (MAD) for your transactions. As of the latest exchange rate, $500 is equivalent to approximately 4,564.18 Moroccan Dirhams. 
 
-When you arrive, it's a good idea to have some local currency on hand for small purchases, tips, and transportation. While credit cards are accepted in many places, especially in larger cities and tourist areas, cash is still king in local markets and smaller towns. 
+When you arrive, it's a good idea to have some local currency on hand for small purchases, tips, and transportation. While major cities and tourist areas often accept credit cards, cash is still widely used, especially in markets and smaller towns. 
 
-If you're planning to explore beyond the usual tourist spots, consider visiting a local souk (market) where you can experience the vibrant culture and perhaps find a unique souvenir. Enjoy your adventure in Morocco!",ok,0.0,"The user did not express any complaints, frustrations, or negative emotions in their message. They asked a straightforward question about currency and received an informative response. Therefore, their emotional state appears to be neutral or satisfied with the interaction."
-b52fcd3f80f37266,0daf9ddd-3b32-4bf8-96ea-2159983e5f2f,user-13,"Any good ramen spots near Shinjuku, Tokyo?","Shinjuku is a vibrant district in Tokyo, known for its bustling streets and incredible food scene. When it comes to ramen, you're in for a treat. Shinjuku offers a variety of ramen styles, each with its own unique twist. Are you traveling alone, or with friends or family? And is this your first time in Tokyo? Knowing a bit more about your trip can help me tailor the recommendations for you!",ok,0.0,The user did not express any signs of frustration in their message. They asked a straightforward question about ramen spots and the assistant responded with engaging questions to help provide tailored recommendations. There were no complaints or demands indicating frustration.
-9615bd8facb1fa2b,a5d5439f-2623-455f-b257-30745615e34e,user-12,I want to do a 10-day trip from May 12 to May 22. How many days is that exactly?,"Your trip from May 12 to May 22 is exactly 10 days long. It's a perfect length to immerse yourself in a new place or explore multiple destinations. Do you have a specific place in mind for this adventure, or are you still deciding?",ok,0.0,The user did not express any signs of frustration such as complaints or demands. The conversation was straightforward and the user received the information they asked for without any negative emotional cues.
-85187a9dcb105d30,2221113a-d599-4b6d-bd7a-1b7685865c9c,user-11,What's the weather typically like in Iceland in February?,"In February, Reykjavik, Iceland, typically experiences average high temperatures of around 4.8°C and lows of about 0.7°C. The weather can be quite variable, with temperatures ranging from a maximum of 8.1°C to a minimum of -6.5°C. 
+If you're planning to explore beyond the usual tourist spots, consider visiting the blue-washed town of Chefchaouen in the Rif Mountains. It's a photographer's dream and offers a unique glimpse into Moroccan culture away from the bustling cities.",ok,0.0,"The user asked a straightforward question and received a clear answer including additional helpful travel advice. There are no signs of frustration such as complaints, all caps, or demands. Therefore, the user's emotional state appears to be neutral or satisfied with the exchange."
+ecb46847c9d8fa67,7c1b4270-4708-4fad-8f19-27b35d770d42,user-13,"Any good ramen spots near Shinjuku, Tokyo?","Shinjuku is a vibrant district in Tokyo, known for its bustling streets and incredible food scene. It's a place where the neon lights meet traditional flavors, and ramen is a must-try. Are you traveling alone, or with friends or family? And is this your first time in Tokyo? Knowing a bit more about your trip can help me tailor the recommendations for you!",ok,0.0,"The user has not expressed any signs of frustration in their queries or responses. Instead, they are engaging with the assistant, asking for recommendations in a friendly manner. No complaints or demands for specific results have been made, indicating that they are likely still okay with the interaction."
+d1c9039d0924167b,a95d3c26-a444-4a7b-9bc6-e97525e37903,user-12,I want to do a 10-day trip from May 12 to May 22. How many days is that exactly?,Your trip from May 12 to May 22 is exactly 10 days long. It's a perfect length to immerse yourself in a new place and create lasting memories. Do you have a destination in mind for this adventure?,ok,0.0,"The user did not express any explicit frustration or dissatisfaction with the assistant's response. The conversation seems to proceed smoothly, and the user is offered help for the next step in planning their trip."
+3dc8d7016fb8cf2d,ae520924-c3c7-46f5-ba1a-282890237eff,user-11,What's the weather typically like in Iceland in February?,"In February, Reykjavik, Iceland typically experiences average high temperatures of around 4.8°C and lows of about 0.7°C. The weather can be quite variable, with temperatures ranging from a maximum of 8.1°C to a minimum of -6.5°C. 
 
-February is also a wet month, with about 195.1 mm of precipitation spread over approximately 20 rainy days. This means you should be prepared for a mix of rain and snow, making waterproof clothing and sturdy boots essential for your trip.
+February is also a wet month, with about 195.1 mm of precipitation spread over approximately 20 rainy days. This means you should be prepared for both rain and snow, making waterproof and warm clothing essential for your trip.
 
-While the weather might be chilly, February is a fantastic time to experience Iceland's natural wonders, like the Northern Lights. For a unique experience, consider visiting the lesser-known Westfjords region, where you can enjoy the stunning landscapes with fewer tourists around.",ok,0.0,The user is asking for specific information about the weather in Iceland but does not express any frustration or dissatisfaction. The assistant provides a detailed and relevant answer. There are no signs of frustration or complaints in the message.
-a106923d8f5ad13d,309866ae-2612-488a-91f0-81d230ff0d82,user-10,We're taking our kids (ages 6 and 9) to Costa Rica. What should we know?,"Costa Rica is a magical place for a family adventure, especially with kids! The country is a treasure trove of biodiversity, with lush rainforests, stunning beaches, and an array of wildlife that will captivate both young and old. Imagine waking up to the sounds of howler monkeys and spotting colorful toucans in the treetops!
+While you're there, don't miss the chance to explore beyond the usual tourist spots. Consider visiting the Snæfellsnes Peninsula, often called ""Iceland in Miniature"" for its diverse landscapes, or take a dip in one of the lesser-known geothermal pools like the Secret Lagoon in Flúðir. These experiences can offer a more intimate glimpse into Iceland's natural wonders.",ok,0.0,The user is not exhibiting any explicit signs of frustration in their interaction with the AI travel assistant. Their question about the weather and the assistant's extensive response appears to be met with engagement rather than frustration.
+8559eb47a175285b,b2e66248-9ccd-49bc-acc0-1c5208c263f3,user-10,We're taking our kids (ages 6 and 9) to Costa Rica. What should we know?,"Costa Rica is a magical place for a family adventure, especially with kids! The country is a treasure trove of biodiversity, with lush rainforests, stunning beaches, and an abundance of wildlife. Imagine your children spotting colorful toucans, playful monkeys, and maybe even a sloth hanging from a tree. It's a place where nature feels alive and interactive.
 
-Are you planning to explore the rainforests, relax on the beaches, or perhaps a bit of both? And when are you planning to go? This will help me provide more tailored advice for your trip.",ok,0.0,"The user has not expressed any complaints or signs of frustration yet. They seem engaged and open to further assistance, as they have not made any negative comments about the AI travel assistant."
-48c9bb162ed9a542,fb1ee3c6-a3e8-4859-84df-43e80b4f6205,user-09,What's the local time in Dubai right now?,"Right now, it's Sunday, May 10, 2026, at 08:37 AM in Dubai. The city operates in the Asia/Dubai timezone, and daylight saving time is not active. 
+Are you planning to explore the rainforests, relax on the beaches, or perhaps both? And when are you planning to go? This will help me provide more tailored advice for your trip.",ok,0.0,"The user is having a positive interaction with the AI assistant, expressed interest in the provided information, and did not show any signs of frustration such as complaints or demands."
+1059e8a6b29265a7,4bf3f0f7-f306-4828-a756-795c2ceb9f65,user-09,What's the local time in Dubai right now?,"Right now, it's Monday, May 11, 2026, at 4:44 AM in Dubai. The city is in the Asia/Dubai timezone, and daylight saving time is not active. 
 
-Dubai is a city that never ceases to amaze with its blend of modern marvels and rich cultural heritage. If you're planning a visit, let me know how I can help make your experience unforgettable!",ok,0.0,The user did not express any frustration in their message; the interaction was straightforward and they did not show signs of complaints or dissatisfaction. They simply asked for the time and the assistant provided the information along with additional details.
-18580a9fce54e52b,9479b2c8-6418-41c9-81e9-e7c7ed8dda84,user-08,"I need flights from NYC to Tokyo in early April, 2 passengers economy.","It seems there was an issue retrieving specific flight details at the moment. However, I can guide you on what to generally expect and how to proceed:
+Dubai is a city that never sleeps, with its vibrant nightlife and stunning skyline. If you're planning a visit, there's always something happening, no matter the hour!",ok,0.0,The user did not express any frustration in their request; they simply asked for the local time in Dubai. The assistant provided a detailed response without any indication of discontent from the user.
+e3723b0b6d39a8e4,b9d72c73-6086-45e4-863a-71874a5cd0a8,user-08,"I need flights from NYC to Tokyo in early April, 2 passengers economy.","It seems there was an issue retrieving specific flight details. However, I can guide you on what to generally expect for flights from New York City to Tokyo in early April.
 
-1. **Airlines**: Major airlines like Japan Airlines, All Nippon Airways (ANA), and American Airlines often offer direct flights from New York to Tokyo. You might also find options with one stop through airlines like Delta or United.
+Typically, airlines like Japan Airlines, All Nippon Airways (ANA), and United Airlines offer direct flights from NYC to Tokyo. The journey usually takes around 14 hours. Booking in advance is advisable, especially during cherry blossom season, as it's a popular time to visit Japan.
 
-2. **Booking Tips**: Since early April is a popular time due to the cherry blossom season, it's wise to book your flights as early as possible to secure the best rates and availability.
+For a more precise search, I recommend checking major travel booking sites like Expedia, Kayak, or directly on airline websites for the most up-to-date availability and pricing.
 
-3. **Flight Duration**: Direct flights typically take around 14 hours, so be prepared for a long journey.
+If you have any other questions or need further assistance, feel free to ask!",frustrated,1.0,"The user's request for specific flight details was not fulfilled, and the assistant redirected to other sources rather than providing the information directly. This likely indicates some level of frustration, as the user did not receive the expected assistance. However, there are no explicit complaints or ultimatums from the user, which might suggest their emotional state could also be interpreted as ok, albeit with some disappointment. Given the insufficient response to a straightforward request, I lean towards 'frustrated'."
+601e76d01d8144f9,bb89ded9-13d8-4f16-80e5-47d6a84182f0,user-07,My honeymoon is in the Amalfi Coast in September — what should we not miss?,"Italy is currently under a Level 2 travel advisory, which means you should exercise increased caution due to general security concerns like pickpocketing and crowded areas. However, tourism is running normally, and the Amalfi Coast remains a safe and enchanting destination for your honeymoon.
 
-4. **Unexpected Recommendation**: If your schedule allows, consider a layover in a city like Seattle or San Francisco. It can sometimes reduce costs and give you a chance to explore another city briefly.
+When traveling, be mindful of your belongings, especially in crowded places, and stay informed about any local advisories or transportation updates. The new Schengen Entry/Exit System (EES) will be in place, which involves biometric data collection at border control points, so be prepared for this process when entering Italy.
 
-For the most accurate and up-to-date information, I recommend checking a flight comparison website or contacting a travel agent who can provide you with the latest options and prices. If you need further assistance or have any other questions, feel free to ask!",ok,0.0,"The user did not express explicit complaints or show signs of frustration such as demands for specific actions or negative comparisons to other tools. The assistant's response did not resolve the user's request directly, but the user did not react negatively in their message, indicating they might still be open to continuing the conversation."
-ecb1694af72bb9a4,46ea96d2-3811-43b0-9cf5-a1c891918750,user-07,My honeymoon is in the Amalfi Coast in September — what should we not miss?,"The Amalfi Coast in September offers delightful weather, with average high temperatures around 22.2°C (72°F) and lows around 9.9°C (50°F). It's generally warm, but evenings can be cooler, so packing a light jacket or sweater is a good idea. Rain is minimal, with only about 3 rainy days on average, so you can expect plenty of sunshine for your adventures.
+Enjoy your romantic escape to the Amalfi Coast, and may it be filled with unforgettable moments and breathtaking views! If you need more specific recommendations or help with planning, feel free to ask.",ok,0.0,The user did not express any clear signs of frustration or dissatisfaction with the assistant's response regarding the travel advisory and safety tips for their honeymoon. They are likely receptive to the information provided and have not made complaints or demands that suggest frustration.
+dcc76f867b0b216b,ad501162-2c00-4dc8-a539-c123fe2f9af8,user-06,Is it safe to travel to Colombia right now?,"Colombia is a country of vibrant culture and stunning landscapes, but it's important to be aware of the current travel advisories. The U.S. Department of State has issued a Level 3 advisory for Colombia, urging travelers to reconsider their plans due to crime, terrorism, civil unrest, kidnapping, and natural disasters. Certain areas, such as Arauca, Cauca (excluding Popayán), Valle del Cauca (excluding Cali), and Norte de Santander, are particularly risky.
 
-Regarding travel advisories, Italy is currently under a Level 2 advisory, which means ""exercise increased caution."" This is primarily due to concerns about pickpocketing in crowded areas and general security measures. It's always wise to stay aware of your surroundings, especially in busy tourist spots, but the country remains a welcoming and accessible destination for travelers.
+The UK Foreign, Commonwealth & Development Office (FCDO) also advises against all but essential travel to certain parts of Colombia. They recommend considering your need to travel based on personal or business requirements and familiarity with the region.
 
-Enjoy your honeymoon on the Amalfi Coast! It's a place where romance and beauty are around every corner, and I'm sure you'll create unforgettable memories together. If you need more specific recommendations or help with anything else, feel free to ask!",ok,0.0,The user did not express any complaints or show signs of frustration; they were seeking information about their honeymoon and received a detailed response.
-61909ab7c1ed150f,243b298f-b2a2-4824-9437-092c32763a1d,user-06,Is it safe to travel to Colombia right now?,"Colombia is a country of vibrant culture and stunning landscapes, but it's important to be aware of the current travel advisories. The U.S. State Department has issued a Level 3 advisory for Colombia, urging travelers to reconsider their plans due to crime, terrorism, civil unrest, kidnapping, and natural disasters. Certain areas, such as Arauca, Cauca (excluding Popayán), Valle del Cauca (excluding Cali), and Norte de Santander, are particularly risky and should be avoided.
+If you decide to travel, it's crucial to plan carefully. Use verified transport, arrange hotel pickups in advance, and consider domestic flights between cities for safer travel. Always stay informed and cautious, especially when exploring areas outside major cities like Bogotá.
 
-The UK Foreign, Commonwealth & Development Office (FCDO) also advises against all but essential travel to certain regions of Colombia. It's crucial to stay informed and plan your trip with caution, especially if you intend to visit areas outside major cities like Bogotá.
+If you have specific plans or areas in Colombia you're interested in, feel free to share, and I can provide more tailored advice or recommendations.",ok,0.0,"The user did not express explicit frustration or complaints. Their inquiry about safety in Colombia was addressed thoroughly by the assistant, and there is no indication of dissatisfaction or urgency in their response. Therefore, the user appears to be in an 'ok' emotional state."
+1c040363f01cbca4,b90b0368-5554-4c48-aa18-e7a8d24c2955,user-05,What are the best things to do in Marrakech? We love food and architecture.,"Marrakech is a city that dazzles the senses with its vibrant colors, intricate architecture, and tantalizing flavors. It's a place where the past and present blend seamlessly, offering a rich tapestry of experiences.
 
-If you decide to travel, consider structured protocols such as verified transport, pre-arranged hotel pickups, and domestic flights between cities to enhance your safety. Always stay updated with the latest advisories and make informed decisions based on your personal circumstances and familiarity with the region.",ok,0.0,"The user asked a straightforward question about travel safety, and the assistant provided a thorough response with information regarding travel advisories. There is no expression of dissatisfaction or frustration from the user in this exchange, indicating that they are likely satisfied with the assistant's helpfulness and thoroughness."
-b964604c1013bbbd,fe39bd50-d710-40bf-92a8-c45e65544e20,user-05,What are the best things to do in Marrakech? We love food and architecture.,"Marrakech is a city that dazzles the senses, with its vibrant colors, aromatic spices, and intricate architecture. It's a place where the past and present blend seamlessly, offering a rich tapestry of experiences.
+One of the most extraordinary aspects of Marrakech is its medina, a UNESCO World Heritage site. The labyrinthine streets are filled with souks where you can find everything from spices to textiles. The architecture here is a feast for the eyes, with stunning examples of Islamic art and design.
 
-The heart of Marrakech is the medina, a UNESCO World Heritage site, where you can wander through narrow alleyways and discover hidden gems at every turn. The architecture here is a feast for the eyes, with stunning examples of Islamic art and design.
+For food lovers, Marrakech is a paradise. The city's culinary scene is a delightful mix of traditional Moroccan dishes and modern interpretations. The night market at Jemaa el-Fnaa is a must-visit, where you can savor dishes like tagine and couscous while being entertained by street performers.
 
-For food lovers, Marrakech is a paradise. The city's culinary scene is a delightful mix of traditional Moroccan flavors and modern twists. The bustling Jemaa el-Fnaa square is a must-visit, especially in the evening when it transforms into a lively open-air food market.
+Are you traveling with anyone, or is this a solo adventure? And is this your first time visiting Marrakech? Knowing a bit more about your travel style can help me tailor some recommendations for you!",ok,0.0,"The user did not express any signs of frustration, complaints, or negativity regarding the AI's responses. The conversation appears to be friendly and inquisitive, with the user engaging positively with the assistant's inquiry about their travel style."
+db05756d8dfc9a34,465a725b-bdba-4d81-b1d9-e1fd9ffe508c,user-04,What's the USD to Thai Baht exchange rate right now?,"The current exchange rate is approximately 32.25 Thai Baht for 1 US Dollar. If you're planning a trip to Thailand, this rate can help you budget for your adventure. Is there a specific part of Thailand you're excited to explore?",ok,0.0,The user did not express any complaints or dissatisfaction with the AI's response. The conversation appears to be proceeding smoothly without any signs of frustration from the user.
+206a98178a26c795,da6ab745-a9dd-49b5-b03f-02d54b3366d4,user-03,"Can you find hotels in Amsterdam from June 3 to June 8 for 2 guests, budget around $150/night?","Amsterdam is a city where every canal and cobblestone street tells a story. Whether you're exploring the art at the Rijksmuseum or simply enjoying a leisurely bike ride through Vondelpark, there's something magical about this place. 
 
-Are you traveling with anyone special, or is this a solo adventure? And is this your first time visiting Marrakech? Your answers will help me tailor some recommendations just for you!",ok,0.0,"The user hasn't expressed any explicit frustration or dissatisfaction with the assistant or its responses. The conversation indicates a friendly inquiry about the user's travel plans without any complaints or negative remarks. Therefore, the user is not frustrated."
-0daf1406f303d6bc,77d40e55-7800-4380-99dc-06559560591c,user-04,What's the USD to Thai Baht exchange rate right now?,"The current exchange rate is approximately 32.22 Thai Baht for 1 US Dollar. If you're planning a trip to Thailand, this rate can help you budget for your adventure. Is there a specific part of Thailand you're excited to explore?",ok,0.0,"The user did not show any signs of frustration in their response. They asked a straightforward question about the exchange rate, and the assistant provided an answer without any negative feedback or complaints from the user."
-e3342702cd2050b2,050d41e0-aa14-4cf1-8052-1db4c5c9f235,user-03,"Can you find hotels in Amsterdam from June 3 to June 8 for 2 guests, budget around $150/night?","I've found some great resources for budget-friendly hotels in Amsterdam that fit your criteria. Here are a few options to explore:
+Here are some budget-friendly hotel options for your stay from June 3 to June 8, 2024, for two guests, with a budget of around $150 per night:
 
-1. **[Where to Stay in Amsterdam on a Budget - My Top 10 Hotel Picks](https://wanderingswithbri.com/best-amsterdam-budget-hotels/)**: This guide offers a curated list of budget hotels in Amsterdam, perfect for planning an affordable stay.
+1. **Cocomama**: Located near Rembrandt Square, this hotel offers a unique experience in a century-old building with exquisite period details. It's a bit off the tourist trail but still conveniently located.
 
-2. **[15 CHEAPEST Places to Stay in Amsterdam (with Prices & Booking Hacks)](https://www.hostelz.com/articles/cheapest-places-to-stay-in-amsterdam)**: Discover some of the cheapest places to stay in Amsterdam, complete with booking tips.
+2. **Via Amsterdam**: A creatively designed budget hostel/hotel with a fun 90’s theme. It's located on the border of Amsterdam and Diemen, offering a unique and nostalgic touch.
 
-3. **[The 7 Best Budget Hotels in Amsterdam - EuroCheapo.com](https://www.eurocheapo.com/blog/amsterdam-top-budget-hotels.html)**: A selection of budget hotels that offer great value for money.
+3. **Ecomama**: An eco-conscious hostel located in the heart of Amsterdam, next to the Waterlooplein Flea Market. It's a great spot for those who appreciate sustainability.
 
-4. **[10 Best Amsterdam Hotels, Netherlands (from $61) - Trip.com](https://us.trip.com/hotels/amsterdam-hotels-list-176/)**: Compare prices and read guest reviews to find the perfect hotel for your stay.
+4. **ClinkNOORD**: Situated in the lush, green Amsterdam Noord, this hostel offers a vibrant atmosphere and is just a short ferry ride from the city center.
 
-5. **[The Cheapest Nicest Hotels in Amsterdam | CN Traveller](https://www.cntraveller.com/gallery/best-affordable-hotels-amsterdam)**: A list of some of the nicest yet affordable hotels in Amsterdam.
+5. **The Social Hub Hotel Amsterdam City**: A meeting place for short-term and long-term visitors, located near De Pijp, a lively neighborhood known for its market and eateries.
 
-These resources should help you find a comfortable and budget-friendly place to stay while you explore the enchanting city of Amsterdam. Enjoy your trip!",ok,0.0,"The user did not express any explicit complaints, nor did they show signs of frustration with the assistant's response. They simply received a list of resources without any negative reactions, indicating they are likely satisfied with the assistant's help."
-45b512ca3c92c053,6e9d7670-a498-4b81-a340-c4620955161a,user-02,I'm planning my first solo trip to Japan in October — not sure where to start!,"Japan in October is a magical experience, especially for a solo traveler. The country is a blend of ancient traditions and cutting-edge modernity, and October brings the beautiful koyo (autumn leaves) season, where the landscapes are painted in vibrant reds and golds.
+6. **Volkshotel**: Located in the hip and emerging neighborhood of Amsterdam East, near the bustling market near Waterloo Square. It's a quirky and cool place to stay.
 
-What drew you to Japan for your solo adventure? Are there specific cities or experiences you're particularly interested in exploring?",ok,0.0,"The user has not expressed any signs of frustration or dissatisfaction with the AI assistant. Instead, they seem engaged and excited about their travel plans, asking for assistance in a positive way. Therefore, their emotional state is ok."
-5eeff657a8824089,5dfb5249-b9bd-45d9-8b03-e54d072eb44b,user-01,What's the weather in Lisbon this weekend? I'm flying in Friday.,"Lisbon is a city that dances between the old and the new, with its cobblestone streets and vibrant azulejos. This weekend, as you arrive, you'll find the weather to be a bit of a mixed bag, but that only adds to the charm of exploring this beautiful city.
+7. **Hotel Not Hotel**: This hotel resembles a hip boutique hotel with a fascinating design. It's located in a less touristy area, offering a unique stay experience.
 
-**Friday (May 15):** Expect overcast skies with temperatures reaching up to 16.8°C. It's a great day to wander through the Alfama district, where the narrow streets and Fado music create an atmosphere like no other.
+For more details and to book, you can check out these links:
+- [Wanderings with Bri](https://wanderingswithbri.com/best-amsterdam-budget-hotels/)
+- [Budget Traveller](https://budgettraveller.org/10-of-the-best-budget-places-to-stay-in-amsterdam/)
+- [EuroCheapo](https://www.eurocheapo.com/blog/amsterdam-top-budget-hotels.html)
+- [Skyscanner](https://www.skyscanner.com/hotels/netherlands/amsterdam-hotels/ci-27536561)
 
-**Saturday (May 16):** The weather will remain overcast with a high of 17.2°C. A slight chance of rain might make it the perfect day to explore the city's many museums or enjoy a cozy café with a view of the Tagus River.
+These options should provide a comfortable and memorable stay in Amsterdam. Enjoy your adventure!",ok,0.0,"The user did not express any overt frustration during the conversation. They made a straightforward request, and the assistant responded with relevant hotel options without any signs of dissatisfaction from the user. Therefore, the user appears to be in an 'ok' emotional state."
+56f88f697d9ca287,f6d2c233-83cf-42eb-8f8d-2e6e1a63babe,user-02,I'm planning my first solo trip to Japan in October — not sure where to start!,"Japan in October is a magical experience, especially for a solo traveler. The country is a blend of ancient traditions and cutting-edge modernity, and October brings the added beauty of autumn foliage, known as ""koyo,"" which paints the landscapes in vibrant reds and golds.
 
-While you're in Lisbon, don't miss the chance to visit the LX Factory, a creative hub filled with unique shops, eateries, and art spaces. It's a bit off the beaten path but offers a glimpse into the city's modern, artistic side.
+What drew you to Japan for your solo adventure? Are there specific cities or experiences you're particularly interested in exploring?",ok,0.0,The user expresses clear intent and excitement about their trip to Japan without any signs of dissatisfaction or complaints about the assistant's responses.
+d272a55033a2aa13,08f97793-81ca-466d-906f-d1dce6d1d054,user-01,What's the weather in Lisbon this weekend? I'm flying in Friday.,"Lisbon is a city that dances between the old and the new, with its cobblestone streets and vibrant azulejos. This weekend, as you arrive, the weather will add its own touch to your adventure.
 
-Enjoy your trip, and let the unexpected moments become the highlights of your adventure!",ok,0.0,The user asked a straightforward question about the weather but did not express any frustration or dissatisfaction in their request or the assistant's response. The assistant provided a detailed answer with additional suggestions for activities without any negative feedback from the user.
-fe5e251610cdc157,51cd8b75-77bf-4837-94e9-58b0d5f39ff9,,I am thinking about going to Japan next spring,"Japan in spring is truly magical, especially with the cherry blossoms painting the landscape in shades of pink. Are you planning to travel solo, with family, or perhaps with friends? And is this your first time visiting Japan, or have you been before?",ok,0.0,"The user has not expressed any explicit frustration, complaints, or demands in the conversation. The user seems to be engaged in a positive and exploratory manner regarding their travel plans."
-85481d7951c7dff6,52e93850-2d36-481d-b23a-64bbf2c58834,eval-run,"What time is it right now in Sydney, Australia?","The current local time in Sydney, Australia is Sunday, May 10, 2026, at 05:28 AM.",ok,0.0,"The user did not express any explicit frustration or complaints in the conversation provided. They simply asked for the current time in Sydney, and the assistant responded with the information. There are no signs of frustration such as demands, negative comparisons, or explicit complaints."
-b8982b4d4185ff77,52e93850-2d36-481d-b23a-64bbf2c58834,eval-run,What's the typical weather like in Bali in August? I'm planning a trip.,"In August, Bali typically experiences mild weather. You can expect average high temperatures around 22.9°C and average lows of about 14.6°C. The maximum temperature can reach up to 24.7°C, while the minimum might drop to 12.8°C.
+On Friday, expect overcast skies with a high of 22.1°C and a low of 13.9°C. The clouds will linger into Saturday, with temperatures ranging from 14.7°C to 20.3°C. By Sunday, the skies will clear up, offering mainly clear conditions with a pleasant high of 21.0°C and a low of 15.0°C.
 
-August sees some rainfall, with a total precipitation of approximately 81.4 mm spread over about 17 rainy days. It's a good idea to pack a light jacket for cooler evenings and an umbrella or raincoat for the occasional rain. Enjoy your trip!",ok,0.0,"The user did not show any signs of frustration such as complaints, demands, or negative comparisons, indicating they are satisfied with the assistant's response."
-73cb854479445bd7,52e93850-2d36-481d-b23a-64bbf2c58834,eval-run,"My trip to Amsterdam is June 1 to June 14, 2026. How long is that?","Your trip to Amsterdam from June 1 to June 14, 2026, is 13 days long.",ok,0.0,The user has not expressed any frustration or complaints about the response they received. The interaction has been straightforward without any signs of dissatisfaction or negativity.
-71921708af9ce191,52e93850-2d36-481d-b23a-64bbf2c58834,eval-run,Is it safe to travel to Mexico City right now? What do the advisories say?,"Travel advisories for Mexico, including Mexico City, suggest exercising increased caution due to concerns about terrorism, crime, and kidnapping. Here's a summary of the advisories:
-
-- **U.S. State Department**: Mexico is generally rated at Level 2, which means ""Exercise Increased Caution."" However, specific states within Mexico may have different advisory levels, ranging from Level 1 (Exercise Normal Precautions) to Level 4 (Do Not Travel). It's important to check the specific advisory for the area you plan to visit.
-
-- **UK Foreign, Commonwealth & Development Office (FCDO)**: The FCDO provides detailed travel advice, including safety and security, entry requirements, and legal differences. Travelers are advised to check the FCDO's country-specific travel advice page for the latest information.
-
-Overall, while much of Mexico, including Mexico City, is under a Level 2 advisory, it's crucial to stay informed about the specific areas you plan to visit and follow local advice and updates.",ok,0.0,"The user did not express any frustration or dissatisfaction in their query, nor did they demonstrate any signs of frustration in their response. They asked a straightforward question about travel advisories and received a detailed answer, which indicates they are likely satisfied with the information provided."
-26fd9b4706f5fe4f,52e93850-2d36-481d-b23a-64bbf2c58834,eval-run,I need to convert 500 US dollars to Japanese yen.,"500 US dollars is approximately 78,331.31 Japanese yen at the current exchange rate of 156.66 JPY per USD.",ok,0.0,"The user did not express any signs of frustration in the conversation. The user simply asked for a currency conversion, and the assistant provided the information without any complaints or demands from the user. Therefore, the emotional state is 'ok'."
-37f2d4783f9d8f37,52e93850-2d36-481d-b23a-64bbf2c58834,eval-run,Can you find some good sushi restaurants in Tokyo?,"I couldn't retrieve specific sushi restaurant listings in Tokyo at the moment. However, Tokyo is renowned for its sushi, and there are several highly recommended places you might consider:
-
-1. **Sukiyabashi Jiro** - Known as one of the best sushi restaurants in the world, it gained fame from the documentary ""Jiro Dreams of Sushi."" Reservations are essential.
-
-2. **Sushi Saito** - Another top-rated sushi spot, often praised for its intimate setting and exceptional quality.
-
-3. **Sushiro** - A popular budget-friendly sushi chain with locations throughout Tokyo, including one in the Yaesu underground mall at Tokyo Station.
-
-4. **Tsukiji Outer Market** - While the inner market has moved, the outer market remains a great place to enjoy fresh sushi from various vendors.
-
-5. **Umegaoka Sushi No Midori** - Known for offering high-quality sushi at reasonable prices, often with long lines due to its popularity.
-
-For more detailed information or reservations, you might want to check platforms like TripAdvisor or the Michelin Guide for Tokyo.",ok,0.0,"The user asked for specific sushi restaurant listings, and the assistant provided general recommendations instead, which might not meet the user's specific needs. However, the user did not express explicit complaints or anger, so they seem to be okay with the information provided, albeit not fully satisfied."
-2b5f465fc4e70945,52e93850-2d36-481d-b23a-64bbf2c58834,eval-run,"What are the top things to do in Kyoto, Japan?","I couldn't retrieve specific attractions directly, but Kyoto is renowned for its rich cultural heritage and beautiful landscapes. Here are some top things to do in Kyoto:
-
-1. **Fushimi Inari Shrine**: Famous for its thousands of red torii gates, this shrine is a must-visit for its stunning trails and spiritual atmosphere.
-
-2. **Kinkaku-ji (Golden Pavilion)**: This iconic Zen Buddhist temple is covered in gold leaf and surrounded by beautiful gardens.
-
-3. **Arashiyama Bamboo Grove**: Walk through the serene bamboo forest and enjoy the natural beauty of the area.
-
-4. **Kiyomizu-dera**: A historic temple with a large wooden stage that offers breathtaking views of the city.
-
-5. **Nijo Castle**: Explore this UNESCO World Heritage Site, known for its beautiful gardens and historical significance.
-
-6. **Gion District**: Experience traditional Kyoto culture in this famous geisha district, with its preserved wooden buildings and tea houses.
-
-7. **Philosopher's Path**: A picturesque walkway lined with cherry blossom trees, perfect for a peaceful stroll.
-
-8. **Ryoan-ji**: Visit this Zen temple known for its rock garden, a masterpiece of Japanese culture.
-
-9. **Nanzen-ji Temple**: A large temple complex with beautiful gardens and historical architecture.
-
-10. **Kyoto Imperial Palace**: Explore the former residence of the Emperor of Japan, set in the expansive Kyoto Gyoen National Garden.
-
-These attractions offer a mix of cultural, historical, and natural experiences that showcase the best of Kyoto.",ok,0.0,"The user did not express any frustration or dissatisfaction with the assistant's response. Instead, the conversation indicates that the assistant provided a comprehensive list of attractions in Kyoto, fulfilling the user's request. There are no signs of complaint or negative emotions from the user."
-453fa09173c68de8,52e93850-2d36-481d-b23a-64bbf2c58834,eval-run,I'm looking for hotels in Barcelona from July 10 to July 17 for 2 guests under $200 a night.,"Here are some hotel options in Barcelona for your stay from July 10 to July 17, 2024, for 2 guests under $200 a night:
-
-1. **W Barcelona**
-   - [Great vibe! - Review of W Barcelona](https://www.tripadvisor.com/ShowUserReviews-g187497-d1465497-r977048962-W_Barcelona-Barcelona_Catalonia.html)
-   - A highly recommended hotel with positive reviews about the staff and overall experience.
-
-2. **Ibis Styles Barcelona Centre Hotel**
-   - [IBIS STYLES BARCELONA CENTRE HOTEL - Updated 2026 Prices](https://www.tripadvisor.com/Hotel_Review-g187497-d8779132-Reviews-Ibis_Styles_Barcelona_Centre_Hotel-Barcelona_Catalonia.html)
-   - Note: The spa is currently under repairs, so it might be worth checking if it will be open during your stay.
-
-3. **ILUNION Hotel Les Corts Spa**
-   - [ILUNION HOTEL LES CORTS SPA - Updated 2026 Prices & Reviews](https://www.tripadvisor.com/Hotel_Review-g187497-d280923-Reviews-ILUNION_Hotel_Les_Corts_Spa-Barcelona_Catalonia.html)
-   - Offers 4-star facilities and is located in the city center, making it a great option for exploring Barcelona.
-
-4. **Royal Ramblas Hotel**
-   - [ROYAL RAMBLAS HOTEL - Updated 2025 Prices & Reviews](https://www.tripadvisor.com/Hotel_Review-g187497-d228634-Reviews-Royal_Ramblas_Hotel-Barcelona_Catalonia.html)
-   - Known for its excellent location in the heart of Barcelona.
-
-These options should provide a comfortable stay within your budget. Be sure to check the latest reviews and availability as your travel dates approach.",ok,0.0,"The user has not expressed any explicit complaints or dissatisfaction in their response and has received hotel options that meet their criteria, indicating that they are likely satisfied with the assistant's performance."
-fbb1931ac3d5aeeb,52e93850-2d36-481d-b23a-64bbf2c58834,eval-run,Find me flights from San Francisco to Paris in late July for 2 passengers in economy.,"It seems there was an issue retrieving specific flight details for your request. However, I can provide some general guidance:
-
-For flights from San Francisco (SFO) to Paris (CDG) in late July, you can typically find options with major airlines such as Air France, United Airlines, and Delta, which often offer direct flights. It's advisable to book early, as July is a popular travel month, and prices can vary significantly.
-
-To get the most accurate and up-to-date flight options, I recommend checking a flight comparison website or contacting a travel agent who can provide you with specific flight times, prices, and booking options. If you have any other questions or need further assistance, feel free to ask!",ok,0.0,"The user did not express any explicit complaints or signs of frustration in the conversation; they simply requested a flight without any negative feedback towards the assistant's inability to retrieve specific details. Therefore, the user seems to be in an 'ok' emotional state."
-a219fff4d50b8033,52e93850-2d36-481d-b23a-64bbf2c58834,eval-run,What's the current weather like in Tokyo?,"The current weather in Tokyo is mainly clear with a temperature of 13°C. The humidity is at 51%, and there's a gentle wind blowing at 4.4 km/h. 
-
-Here's a brief forecast for the next few days:
-- **May 10**: Partly cloudy, high of 23.2°C, low of 12.6°C
-- **May 11**: Mainly clear, high of 24.8°C, low of 14.7°C
-- **May 12**: Mainly clear, high of 23.4°C, low of 15.0°C
-- **May 13**: Overcast, high of 25.8°C, low of 15.4°C
-- **May 14**: Slight rain, high of 22.1°C, low of 15.1°C
-- **May 15**: Overcast, high of 24.2°C, low of 14.4°C
-- **May 16**: Clear sky, high of 27.9°C, low of 17.2°C
-
-Let me know if you need more information!",ok,0.0,"The user asked about the weather and received a detailed response, but there are no signs of frustration or dissatisfaction in the interaction. The user did not express any complaints or demands. Therefore, their emotional state is neutral to positive."
-2df88bd9abfb920d,test-pydantic,test,Convert 100 USD to EUR,100 USD is approximately 84.92 EUR at the current exchange rate of 0.8492.,ok,0.0,"The user's request for a currency conversion is straightforward, and the assistant provides an accurate response without any signs of dissatisfaction or frustration expressed by the user. Therefore, the user appears to be satisfied with the outcome of this interaction."
-055b80bac2ecca82,session-check-5,user-frustrated-5,Every time I try to plan something you give me the same generic answer. I need to know RIGHT NOW if I need a visa to visit Japan as a US citizen. Stop giving me advisory level nonsense and just answer the question.,"As a U.S. citizen, you do not need a visa for short-term visits to Japan for tourism or business purposes, typically up to 90 days. However, it's always a good idea to check the latest entry requirements and travel advisories directly from official sources like the U.S. Department of State's website or the Japanese embassy, as policies can change.",frustrated,1.0,"The user explicitly expresses frustration with the assistant for providing generic answers and issues a direct demand for a specific response. The use of phrases like ""I need to know RIGHT NOW"" and complaints about the assistant's previous responses indicate clear frustration."
-aca01ca873b1e58f,session-check-4,user-check-4,Find sushi restaurants within 500 meters of Shibuya station in Tokyo.,"Here are some sushi restaurants within 500 meters of Shibuya Station in Tokyo:
-
-1. **Kurosaki Offshoot** - Known as an undiscovered gem in Shibuya, this restaurant offers excellent sushi experiences in a dressed-down environment.
-
-2. **Ono Special Sushi** - Located at Ebisu Bricks, this restaurant is famous for its unique Ono Special rolled sushi, featuring broiled toro (fatty tuna) and other fresh ingredients sourced daily from the Tsukiji market.
-
-3. **Omakase Sushi Spot** - Perfect for special occasions, this stand-up sushi restaurant offers a modern Tokyo experience with carefully selected bluefin tuna and seasonal fresh seafood through OMAKASE. It's within walking distance of Shibuya Station.
-
-These options provide a variety of sushi experiences, from casual to special occasions, all conveniently located near Shibuya Station.",ok,0.0,"The user did not express any explicit complaints or frustrations in their request for sushi restaurants, and the assistant provided a thoughtful response with multiple options. The user's request was straightforward and the assistant's reply was complete, indicating a neutral to positive interaction."
-3aa66590b4d326be,session-check-4,user-check-4,Find sushi restaurants within 500 meters of Shibuya station in Tokyo.,,ok,0.0,"The user does not express any explicit complaints or negative emotions in their message. Their request is clear and straightforward, indicating no signs of frustration."
-06d284b5dcc504a7,session-check-4,user-check-4,Find sushi restaurants within 500 meters of Shibuya station in Tokyo.,,ok,0.0,The user did not express any signs of frustration through complaints or negative language; they simply made a request.
-63f9012612307080,session-check-3,user-check-3,"I have a $3,000 AUD budget. What is that in USD, and what are some flight options from Sydney to New York?","Your budget of 3,000 AUD is approximately 2,173.15 USD based on the current exchange rate.
-
-For flights from Sydney to New York on December 1, 2023, here are some options:
-
-- **Airlines**: Qantas and United Airlines offer direct routes between Sydney and New York.
-- **Flight Duration**: Typically around 20 to 21 hours, depending on wind conditions and layovers.
-- **Departure Times**: Flights generally depart between 03:35 AM and 05:00 AM.
-- **Cabin Classes**: Economy, Premium Economy, and Business Class are available on some flights.
-
-For the best deals, consider checking platforms like Google Flights, Kayak, or Skyscanner, or book directly through airline websites.",ok,0.0,The user did not express any dissatisfaction or frustration with the assistant's response. Their inquiry regarding the budget conversion and flight options was answered adequately with relevant information.
-d5d72cfbffc2ce64,session-check-2,user-check-2,How many days is it from March 15 to April 2? We are planning a multi-city Europe trip for that window.,"Your trip from March 15 to April 2 is 18 days long, which is equivalent to 2 weeks and 4 days. If you need help planning your multi-city Europe trip, feel free to ask for assistance with flights, accommodations, attractions, or any other travel details!",ok,0.0,"The user has not expressed any explicit complaints or signs of frustration in the conversation provided. They asked a straightforward question about the duration of their trip, and the assistant responded positively by offering additional help for their trip planning. There are no indicators of the user being dissatisfied or frustrated with the assistant's response."
-b6b21bfad36fa6c6,session-check-1,user-check-1,"I am deciding between Thailand and Vietnam for a 2-week trip in February. Compare weather, safety advisories, and approximate daily costs.","Here's a comparison of Thailand and Vietnam for a 2-week trip in February, focusing on weather, safety advisories, and approximate daily costs:
-
-### Weather
-- **Bangkok, Thailand:**
-  - **Average High:** 34.1°C
-  - **Average Low:** 24.2°C
-  - **Precipitation:** 59mm across 10 rainy days
-  - **Note:** February is generally warm and relatively dry, making it a good time for outdoor activities.
-
-- **Hanoi, Vietnam:**
-  - **Average High:** 20.7°C
-  - **Average Low:** 14.8°C
-  - **Precipitation:** 49mm across 12 rainy days
-  - **Note:** February in Hanoi is cooler and can be a bit damp, but it's a comfortable time for exploring the city and surrounding areas.
-
-### Safety Advisories
-- **Thailand:**
-  - **US State Department:** Level 2 (Exercise Increased Caution)
-  - **UK FCDO:** Provides detailed entry requirements and safety advice. Travelers should be cautious in certain provinces due to insurgent-related violence.
-  - **Entry Requirements:** Visa-free entry for 60 days for many nationalities, with specific documentation required.
-
-- **Vietnam:**
-  - **US State Department:** Level 1 (Exercise Normal Precautions)
-  - **UK FCDO:** Offers comprehensive safety and entry requirement advice. Vietnam is generally considered safe for travelers.
-  - **Entry Requirements:** Visa and documentation requirements vary; check specific guidelines for your nationality.
-
-### Approximate Daily Costs
-- **Thailand:**
-  - **Budget Traveler:** $30-50 per day
-  - **Mid-range Traveler:** $50-100 per day
-  - **Luxury Traveler:** $100+ per day
-
-- **Vietnam:**
-  - **Budget Traveler:** $20-40 per day
-  - **Mid-range Traveler:** $40-80 per day
-  - **Luxury Traveler:** $80+ per day
-
-Both countries offer unique experiences, with Thailand being warmer and more tourist-oriented, while Vietnam offers a cooler climate and a rich cultural experience. Consider your preferences for weather, safety, and budget when making your decision.",ok,0.0,"The user expresses a straightforward request for a comparison of destinations for an upcoming trip and receives a detailed and organized response from the assistant. There are no explicit complaints or signs of frustration in their communication, indicating that the user seems to be adequately satisfied with the information provided."
-daeda1a82aa18fdb,session-frustrated-flights,user-frustrated-derek,"I asked you to find flights from LAX to London tomorrow and you gave me some web search junk about how to search for flights. I do not want TIPS on how to SEARCH. I want you to find the cheapest available seat on any airline tomorrow May 9th and tell me the price and flight number. This should take 2 seconds. Why is this so hard? Just give me flight AA123 or BA456 or WHATEVER, price, and departure time. Is that really too much to ask??","I attempted to retrieve specific flight details for your request, but it seems there was an issue with accessing the exact flight numbers and prices. However, I recommend checking platforms like Google Flights, Kayak, or Skyscanner for real-time availability and pricing. These platforms allow you to compare different airlines and find the best deals for flights from LAX to London on May 9th. If you need further assistance, feel free to ask!",frustrated,1.0,"The user expressed clear dissatisfaction by stating 'this is useless' and emphasized the specific information they wanted, showing impatience and frustration with the assistant's failure to meet their request directly. Additionally, the tone and wording imply a lack of tolerance for alternatives, indicating frustration."
-64182c12462c52a2,session-frustrated-restaurants,user-frustrated-leila,"This is genuinely useless. I asked about vegetarian restaurants in Shibuya Tokyo last time and got a web search dump with no real addresses or hours. My friend uses ChatGPT and gets way better results. Why are your restaurant recommendations so vague?? I need actual restaurant names with real addresses that I can walk into, not a list of search snippets. Try harder.","I apologize for the previous inconvenience. Let me provide you with specific vegetarian restaurant recommendations in Shibuya, Tokyo, complete with names and addresses:
-
-1. **Ain Soph. Journey Shibuya**
-   - **Address:** 3-18-10 Shibuya, Shibuya City, Tokyo 150-0002, Japan
-   - **Description:** A cozy spot offering a variety of vegetarian and vegan dishes, including pancakes and burgers.
-
-2. **Nagi Shokudo**
-   - **Address:** 15-10 Uguisudanicho, Shibuya City, Tokyo 150-0032, Japan
-   - **Description:** Known for its vegan Japanese set meals and a relaxed atmosphere.
-
-3. **T's Restaurant**
-   - **Address:** 5-24-2 Sendagaya, Shibuya City, Tokyo 151-0051, Japan
-   - **Description:** Offers a wide range of vegan dishes, including ramen and curry.
-
-4. **Brown Rice by Neal's Yard Remedies**
-   - **Address:** 5-1-8 Jingumae, Shibuya City, Tokyo 150-0001, Japan
-   - **Description:** Focuses on organic and vegetarian meals with a peaceful dining environment.
-
-5. **Cafe Eight**
-   - **Address:** 1-10-2 Jinnan, Shibuya City, Tokyo 150-0041, Japan
-   - **Description:** Offers a variety of vegetarian and vegan options in a casual setting.
-
-These restaurants are well-regarded for their vegetarian offerings and should provide a delightful dining experience in Shibuya.",frustrated,1.0,"The user expresses clear frustration about receiving vague restaurant recommendations in the past and directly compares the assistant's performance unfavorably with another service, indicating dissatisfaction with the assistance provided."
-eb09fec8ca571117,session-frustrated-booking,user-frustrated-tom,"I have been trying to plan this Barcelona trip for THREE WEEKS and every tool I use gives me garbage results. I need you to find me a specific hotel in the Gothic Quarter under 120 euros per night for July 4-11 and actually BOOK IT for me. Not search results, not suggestions — a confirmed reservation. Can you do that or not?","I found some options for hotels in the Gothic Quarter of Barcelona within your budget for July 4-11, 2024. Here are a few suggestions:
-
-1. **Grand Hotel Central**: Known for its great location in the Gothic Quarter, close to the Barcelona Cathedral and Picasso Museum. You can read reviews and check availability on [TripAdvisor](https://www.tripadvisor.com/ShowUserReviews-g187497-d583963-r949873741-Grand_Hotel_Central-Barcelona_Catalonia.html).
-
-2. **Barcelona Beach Resorts**: While not directly in the Gothic Quarter, this list includes various beachfront options that might fit your budget. More details can be found on [TripAdvisor](https://www.tripadvisor.com/HotelsList-Barcelona-Oceanfront-Hotels-zfp312766.html).
-
-3. **Top 10 Best Hotels in Barcelona**: This list includes luxury stays, but you might find some deals within your budget. Check out [Spain Tours](https://spaintours.com/top-10-best-hotels-in-barcelona-luxury-stays/) for more information.
-
-4. **Best Hotels in Barcelona**: A curated list of top places to stay, reviewed by experts. Visit [Time Out](https://www.timeout.com/barcelona/hotels/best-hotels-in-barcelona) for more options.
-
-5. **Trip.com**: Offers a wide range of hotels in Barcelona with competitive prices. Explore options on [Trip.com](https://uk.trip.com/hotels/barcelona-hotels-list-40795/).
-
-To book, I recommend visiting these links and using platforms like Booking.com, Hotels.com, or Airbnb to secure your reservation. Booking early will help you get the best rates. If you need further assistance or have specific preferences, feel free to let me know!",frustrated,1.0,"The user explicitly states their frustration by mentioning they have been trying to plan the trip for three weeks with 'garbage results'. They directly demand a specific action and show impatience with alternatives, indicating a clear sense of frustration with the assistant's responses."
-f74af7b6c8c81c57,session-lisbon-gems,user-nina,What are some hidden gem neighborhoods in Lisbon for a first-time visitor? I am going for 5 days in September and want to avoid the super touristy spots.,"For your trip to Lisbon in September, you can expect pleasant weather with average high temperatures around 26.7°C and lows around 17.1°C. There might be a couple of rainy days, but overall, it's a great time to explore the city.
-
-Regarding travel advisories, Portugal is considered very safe with a Level 1 advisory, meaning you should exercise normal precautions. Petty crime in tourist areas is the primary concern, so just be mindful of your belongings.
-
-Now, for some hidden gem neighborhoods in Lisbon that are less touristy:
-
-1. **Alfama**: While parts of Alfama are popular, exploring its narrow streets and local fado houses can lead you to quieter, authentic experiences.
-
-2. **Graça**: Known for its stunning viewpoints (miradouros), Graça offers a more local vibe with charming cafes and street art.
-
-3. **Campo de Ourique**: A residential area with a strong community feel, great local markets, and excellent dining options.
-
-4. **Mouraria**: One of Lisbon's most multicultural neighborhoods, Mouraria is rich in history and offers a mix of traditional and modern influences.
-
-5. **Estrela**: Home to the beautiful Estrela Basilica and park, this area is peaceful and perfect for a leisurely stroll.
-
-6. **Ajuda**: Close to Belém but less crowded, Ajuda has the Ajuda National Palace and some lovely local eateries.
-
-These neighborhoods offer a more authentic Lisbon experience, away from the typical tourist spots. Enjoy your trip!",frustrated,1.0,The user asked for specific advice about hidden gem neighborhoods in Lisbon but received a response that included weather and travel advisories instead of directly answering their original question about less touristy areas. This indicates potential frustration as the response did not meet their expectations or needs.
-9d9bd6f373f42c58,session-ski-compare,user-alex,"I want to do a ski trip in January. Help me compare Whistler, Canada vs Chamonix, France — weather, flights from Seattle, and general vibe.","Here's a comparison of Whistler, Canada and Chamonix, France for your January ski trip:
-
-### Weather
-- **Whistler, Canada:**
-  - Average High: 4.1°C
-  - Average Low: -5.5°C
-  - Total Precipitation: 59mm across 7 rainy days
-
-- **Chamonix, France:**
-  - Average High: 5.9°C
-  - Average Low: -4.9°C
-  - Total Precipitation: 205mm across 16 rainy days
-
-### Flights from Seattle
-- **To Whistler, Canada:**
-  - Flights are available from Seattle to Whistler, typically involving a combination of flights and ground transportation due to Whistler's proximity to Vancouver. Prices and availability vary, so it's best to check platforms like Google Flights, Kayak, or Skyscanner for the latest deals.
-
-- **To Chamonix, France:**
-  - Flights from Seattle to Chamonix typically involve flying into Geneva, Switzerland, and then taking ground transportation to Chamonix. Flight times range from 9 to 10 hours. Again, checking platforms like Google Flights, Kayak, or Skyscanner will provide the most current options and prices.
-
-### Travel Advisories
-- **Canada:**
-  - Rated at Level 1: Exercise Normal Precautions. Canada is considered a safe destination with no unusual concerns beyond standard vigilance.
-
-- **France:**
-  - Rated at Level 2: Exercise Increased Caution due to the general threat of terrorism and potential for civil unrest. It's advisable to stay informed about local conditions.
-
-### General Vibe
-- **Whistler, Canada:**
-  - Known for its vibrant ski resort atmosphere, Whistler offers a mix of luxury and laid-back mountain culture. It's a popular destination for both skiing and après-ski activities, with a variety of restaurants, bars, and shops.
-
-- **Chamonix, France:**
-  - Chamonix is renowned for its dramatic alpine scenery and is a historic hub for mountaineering. It offers a more traditional European ski experience with charming villages, excellent cuisine, and a rich cultural heritage.
-
-Both destinations offer excellent skiing opportunities, but the choice may depend on your preference for weather conditions, travel logistics, and the type of cultural experience you seek.",ok,0.0,"The user provided a clear request for assistance in comparing two ski trip destinations, but there are no indicators of frustration such as complaints or negative language. The assistant's response is informative and matches the user's request. Therefore, the user seems to be content with the interaction."
-f9478bcf9460d1d0,session-singapore-biz,user-james,I have a business trip to Singapore next Tuesday. What is the weather forecast? And what are some good restaurants near the Marina Bay area for a client dinner?,"### Weather Forecast for Singapore
-
-For your business trip to Singapore next Tuesday, here's the weather forecast:
-
-- **Tuesday, May 12**: Expect thunderstorms with a high of 31.4°C and a low of 24.2°C. There is a significant chance of rain, with about 32mm expected.
-
-### Restaurant Recommendations near Marina Bay
-
-Here are some excellent dining options near the Marina Bay area for a client dinner:
-
-1. **db Bistro & Oyster Bar**
-   - Located at Marina Bay Sands, this restaurant offers a variety of fresh seafood and is a spinoff of the famous db Bistro Moderne in New York City.
-
-2. **CUT by Wolfgang Puck**
-   - Situated at The Shoppes at Marina Bay Sands, CUT is renowned for its high-quality steaks and fine wines. The service is hospitable, making it a great choice for a business dinner.
-
-3. **Wakuda Restaurant & Bar**
-   - Located in the lobby of Hotel Tower 2 at Marina Bay Sands, this restaurant offers luxe Japanese dining with a focus on traditional cooking techniques.
-
-These venues provide a sophisticated atmosphere suitable for entertaining clients. Be sure to make reservations in advance, especially given the popularity of these spots.",ok,0.0,"The user does not express any explicit complaints, demands, or negative references to previous interactions. The conversation appears to be straightforward and productive, with the assistant providing relevant information about the weather and restaurant recommendations. Therefore, the user's emotional state is assessed as 'ok'."
-4190ca076f76efd9,session-rome-family,user-carlos,Our family of four is flying to Rome for 10 days starting June 15th. The kids are 8 and 11. What time will it be in Rome when we land at 7am New York time? Also what are the best family-friendly attractions?,"When you land in Rome at 7 AM New York time, it will be 1 PM in Rome. Rome is 6 hours ahead of New York.
-
-### Family-Friendly Attractions in Rome:
-1. **Colosseum**: A must-see ancient amphitheater that offers guided tours suitable for children.
-2. **Vatican Museums and Sistine Chapel**: Explore art and history with family-friendly tours.
-3. **Bioparco di Roma**: A large zoo located in Villa Borghese, perfect for a day out with kids.
-4. **Explora Children's Museum**: An interactive museum designed specifically for children.
-5. **Villa Borghese Gardens**: Enjoy a picnic or rent bikes to explore this beautiful park.
-6. **Trevi Fountain**: A famous landmark where kids can enjoy tossing coins for good luck.
-7. **Pantheon**: An architectural marvel that is both educational and awe-inspiring.
-8. **Roman Forum**: Walk through ancient ruins and imagine life in ancient Rome.
-9. **Castel Sant'Angelo**: Offers great views and a fascinating history.
-10. **Trastevere Neighborhood**: Explore charming streets and enjoy family-friendly dining options.
-
-### Travel Advisory for Italy:
-- **Safety Level**: Exercise normal precautions. This is the lowest advisory level for safety and security risks.
-- **Entry Requirements**: Check for any specific entry requirements or health advisories before traveling.
-- **General Advice**: Be aware of the potential risk of terrorism and exercise increased caution.
-
-For the most current travel advisories, always check official government websites like [travel.state.gov](https://travel.state.gov) for US citizens or [gov.uk/foreign-travel-advice](https://www.gov.uk/foreign-travel-advice) for UK citizens.",ok,0.0,"The user expressed no signs of frustration in their communication. They asked direct questions and received thorough answers without any negative or demanding language. Therefore, their emotional state appears to be neutral or satisfied."
-d38de97df6a929e7,session-medellin-solo,user-sara,"I am a solo female traveler thinking about visiting Medellín, Colombia for two weeks in March. Is it safe? What is the weather like in March, and what are the best neighborhoods to stay in?","### Safety in Medellín, Colombia
-
-**Travel Advisory:**
-- **US State Department:** Recommends reconsidering travel to Colombia due to crime, terrorism, civil unrest, kidnapping, and natural disasters. Some areas have increased risk, particularly Arauca, Cauca (excluding Popayán), and Valle del Cauca (excluding Cali).
-- **UK FCDO:** Advises against all but essential travel to many parts of Colombia, which could affect travel insurance validity.
-
-**Recommendations:**
-- Always check the latest advisories from your country's foreign ministry.
-- Exercise increased caution, especially in areas known for higher risks.
-
-### Weather in Medellín in March
-
-- **Average High:** 25.1°C
-- **Average Low:** 15.2°C
-- **Rainfall:** 319mm across 29 rainy days
-
-March in Medellín is generally warm with frequent rain, so packing a raincoat or umbrella is advisable.
-
-### Best Neighborhoods to Stay in Medellín
-
-1. **El Poblado:** Known for its vibrant nightlife, upscale dining, and shopping. It's a popular choice for tourists and considered one of the safest areas.
-2. **Laureles:** Offers a more local feel with plenty of cafes, parks, and a relaxed atmosphere. It's also considered safe and is less touristy than El Poblado.
-3. **Envigado:** A quieter, suburban area with a local vibe, offering a mix of residential and commercial spaces. It's known for its safety and community feel.
-
-These neighborhoods provide a good balance of safety, amenities, and cultural experiences for travelers.",ok,0.0,"The user did not express any explicit frustration in their questions or replies. They asked several detailed questions about safety, weather, and neighborhoods without making complaints or showing signs of dissatisfaction. The assistant provided comprehensive and helpful information in response to the user's inquiries."
-8e4ffef514630e19,session-currency-multi,user-priya,"How much is 2500 USD in Japanese Yen, Euros, and Thai Baht? I am trying to figure out my cash budget for a multi-country trip.","Here are the current conversions for 2,500 USD:
-
-- **Japanese Yen (JPY):** 391,656.57 JPY
-- **Euros (EUR):** 2,123.06 EUR
-- **Thai Baht (THB):** 80,543.62 THB
-
-These rates are based on the latest available data. Let me know if you need further assistance with your trip planning!",ok,0.0,"The user did not express any signs of frustration in their inquiry about currency conversion, and the assistant provided the information requested without any complaints or negative sentiments from the user."
-3a5450301d3bc584,session-kyoto-oct,user-maya,"I am planning a week in Kyoto, Japan this October. What will the weather be like, what are the top attractions, and can you recommend some restaurants?","Here's a detailed guide for your trip to Kyoto, Japan this October:
-
-### Weather in October
-- **Average High:** 23.0°C
-- **Average Low:** 15.8°C
-- **Hottest Day:** 28.7°C
-- **Coolest Day:** 6.0°C
-- **Precipitation:** 152mm across 12 rainy days
-
-This means you can expect mild and pleasant weather, perfect for exploring the city. However, be prepared for some rainy days.
-
-### Top Attractions in Kyoto
-1. **Kinkaku-ji (The Golden Pavilion):** A stunning Zen Buddhist temple covered in gold leaf.
-2. **Fushimi Inari Taisha:** Famous for its thousands of red torii gates.
-3. **Arashiyama Bamboo Grove:** A serene and picturesque bamboo forest.
-4. **Kyoto Imperial Palace:** The former ruling palace of the Emperor of Japan.
-5. **Kiyomizu-dera:** A historic temple with a beautiful view of the city.
-6. **Nijo Castle:** Known for its beautiful gardens and historical significance.
-7. **Gion District:** Famous for its traditional wooden machiya houses and geisha culture.
-8. **Ryoan-ji:** Known for its rock garden.
-9. **Philosopher's Path:** A scenic walk lined with cherry trees.
-10. **Nanzen-ji Temple:** A large Zen Buddhist temple complex.
-
-### Recommended Restaurants
-- **Wajoryomen Sugari:** A hidden 12-seater ramen restaurant known for its rich, umami-packed broth.
-- **Kyoto Curry Seisakusho Karil:** A budget-friendly spot for delicious Japanese curry.
-- **Kikunoi:** A world-famous kaiseki restaurant offering fine dining experiences.
-- **Onodera:** Known for its exquisite omakase courses featuring top-tier fish and thoughtful pairings.
-
-These options provide a range of dining experiences from budget-friendly to high-end, allowing you to enjoy Kyoto's culinary delights at any price point.",ok,0.0,"The user did not express any signs of frustration such as complaints, demands, or negative comparisons. Instead, they inquired politely about travel information, suggesting a neutral to positive emotional state."
-dc786b5bea69b8a7,,,"What is the weather like in Paris right now, and how much is 200 EUR in USD?","The current weather in Paris is overcast with a temperature of 11.1°C. The humidity is at 80%, and there's a gentle wind blowing at 4.7 km/h.
-
-As for the currency conversion, 200 EUR is equivalent to approximately 235.51 USD, with the exchange rate being 1 EUR = 1.1775 USD.",ok,0.0,The user did not express any frustrations or complaints in their communication with the assistant. The queries were straightforward and the assistant provided adequate responses without any signs of negative emotions from the user.
+While you're there, don't miss the chance to explore the Alfama district. It's a maze of narrow streets and hidden gems, where you might stumble upon a local fado performance. And for something unexpected, consider visiting the LX Factory — a creative hub filled with unique shops and eateries, perfect for a leisurely afternoon. Enjoy your trip!",ok,0.0,"The user did not express any explicit complaints or negative remarks about the assistant's response. The assistant provided the weather information along with additional travel tips. There is no indication of frustration based on the conversation provided, so the user's emotional state appears to be neutral or satisfied."
+7709db7b508b6f44,5cfc7ba6-d24e-4906-90db-b29671958306,user-20,Nothing you've told me about Santorini hotels has been helpful. Real prices? None. Specific availability? None. I'm going back to Google.,,frustrated,1.0,"The user explicitly states that the information about Santorini hotels has not been helpful and expresses intent to seek alternatives, indicating clear frustration with the assistant's performance."
+120dd48477a0db66,3ede6d5d-2f8b-4b21-99fc-4cc0488eb773,user-19,"Stop asking me about my 'travel style' and just tell me what to do in Barcelona. I'm not here for therapy, I'm here for information.",,frustrated,1.0,The user expresses frustration by stating they do not want to engage with questions about their 'travel style' and insist that they want straightforward information about Barcelona. This indicates a clear annoyance with the assistant's approach.
+6cbe94e5501acdc7,f1efa7c4-fda0-4050-a59c-54604789c77a,user-18,I've been planning this trip for WEEKS and every time I ask for flight options from London to Cape Town you give me the same vague nonsense. This tool is a complete waste of time.,,frustrated,1.0,"The user has expressed explicit complaints about the AI travel assistant's performance, stating that it's a complete waste of time and mentioning their long efforts without success. This indicates a clear emotional state of frustration."
+c387453b1c0da075,9d31586c-8550-454c-ae37-4c40cdc740e9,user-17,I don't want to answer your questions about who I'm traveling with. I JUST WANT THE WEATHER in Bangkok. Can you do that or not?,,frustrated,1.0,"The user is clearly frustrated as they express a strong demand and annoyance over having to answer questions and emphasize their desire for the weather information specifically, indicating they are not satisfied with the interaction."
+535c1a6749aaa25e,73569a9a-5843-4239-916a-c2de4378ea8d,user-16,This is the second time I've asked about hotels in Prague and you still haven't given me anything useful. Every other travel site gives me real options. Why can't you?,,frustrated,1.0,"The user explicitly complains about the assistant's inability to provide useful options for hotels in Prague, referencing their previous requests and comparing the service unfavorably to other travel sites. This indicates clear frustration with the assistant's performance."
+a69f5c50723eba1d,ca87edad-faa4-4425-9cb4-9cfb5ec0eadc,user-15,"I've asked you THREE TIMES about cheap flights to Bali and you keep giving me generic search results. I need ACTUAL prices, not 'check booking sites' — that's completely useless.",,frustrated,1.0,"The user expressed clear frustration by stating that the assistant's responses were 'completely useless' and emphasized their request for specific information three times, indicating repeated failures. The use of ALL CAPS for emphasis on their need for actual prices further highlights their frustration."
+52292b2d125dcf06,617e1468-da41-4cb3-938a-f4870e28ae67,user-14,"What currency should I bring to Morocco, and how much is $500 worth in dirhams?",,ok,0.0,"The user is requesting specific information and showing a need for immediate assistance. However, without any dismissive or negative remarks in the provided text, their emotional state cannot be classified as frustrated. They seem to be seeking information rather than expressing complaints or frustration."
+475c71770d02080c,3b3554c5-9683-47da-8c9d-228d39d06b20,user-13,"Any good ramen spots near Shinjuku, Tokyo?",,ok,0.0,The user did not express any indications of frustration during the conversation nor did they display any negative sentiment towards the assistant. The inquiry appears straightforward and lacks complaints or demands.
+ee0f41a38ca0c476,cbbc197b-3e9e-4b83-b1a4-972bef32c464,user-12,I want to do a 10-day trip from May 12 to May 22. How many days is that exactly?,,ok,0.0,"The user has not expressed any explicit complaints or negative sentiments in their message. They simply ask for clarification on the number of days in the trip, which indicates they are not frustrated but rather just seeking information."
+b24680d9ab001431,d6662643-6bb9-4e66-9e52-303f3f749728,user-11,What's the weather typically like in Iceland in February?,,ok,0.0,"The user has not expressed any signs of frustration or dissatisfaction with the AI travel assistant throughout the conversation; there are no complaints, demands, or negative comparisons. Therefore, the user's emotional state is not frustrated."
+8a706bfd7b4a16af,bcfff67f-d228-43d5-bf69-c699822a61e9,user-10,We're taking our kids (ages 6 and 9) to Costa Rica. What should we know?,,ok,0.0,"The user has not made any explicit complaints, nor shown any signs of frustration like all caps emphasis or demands. They are asking a straightforward question about what they should know for their trip to Costa Rica, which indicates they are seeking help rather than expressing frustration."
+eac3566ed14ca6f8,507c8bbb-0b25-45b2-81b1-26cbc9af5d26,user-09,What's the local time in Dubai right now?,,ok,0.0,"The user is asking a straightforward question about the local time in Dubai, which implies they expect the assistant to provide accurate and quick information. There are no signs of frustration evident in this exchange; the user simply appears to be seeking information."
+5956793ef23847ba,3c89ad64-5e41-4093-81f6-a6c3ff75333b,user-08,"I need flights from NYC to Tokyo in early April, 2 passengers economy.",,ok,0.0,The user is directly requesting specific travel information and has not expressed any complaints or negativity towards the assistant's capabilities. The user's tone seems neutral and inquiring rather than frustrated or upset.
+7c29b4d886516904,0d473262-5d9f-49ee-8af2-568c4f96bfa5,user-07,My honeymoon is in the Amalfi Coast in September — what should we not miss?,,ok,0.0,"The user's message does not contain any explicit complaints or signs of frustration such as repeated failures or negative comparisons. They are simply asking for recommendations for their honeymoon, which suggests they are at least mildly interested rather than frustrated."
+b288af0afbe06c42,73f91a3e-0b13-4f93-90d5-f011c1768b00,user-06,Is it safe to travel to Colombia right now?,,ok,0.0,"The user is asking a straightforward question about travel safety, which indicates they are looking for assistance. The user hasn't displayed any signs of frustration, such as complaints or demands. Instead, they seem to be seeking information."
+5e3056f4a52710de,5d2670ce-8c5a-4ddb-938a-4c3de09d7dcd,user-05,What are the best things to do in Marrakech? We love food and architecture.,,ok,0.0,"The user has not expressed any explicit complaints or frustrations in their message. They are asking a straightforward question about things to do in Marrakech related to food and architecture, and there are no signs of frustration or dissatisfaction indicated in the conversation so far."
+685e7111bc5abecc,3b5831b2-91cd-4da0-a352-2cbc13e1155e,user-04,What's the USD to Thai Baht exchange rate right now?,,ok,0.0,The user did not express any signs of frustration in their message and simply asked for information.
+050ca08a9df3bcba,7b4f78c1-b144-456f-a944-10b5313850c3,user-03,"Can you find hotels in Amsterdam from June 3 to June 8 for 2 guests, budget around $150/night?",,ok,0.0,The user expressed a clear request for hotel information and did not show any signs of dissatisfaction or frustration in their message. There were no complaints or demands indicating a negative emotional state.
+256d2eb0f3e501db,a49da174-74d7-4861-b16d-a8e9fb3c5db8,user-02,I'm planning my first solo trip to Japan in October — not sure where to start!,,ok,0.0,"The user is expressing uncertainty about where to start in planning their trip, which may indicate a level of confusion or lack of direction, but there are no explicit complaints or signs of frustration in their statement. Therefore, the emotional state is not classified as frustrated."
+491fbd208eafd83a,f6a84df8-02af-4cba-9cfc-86af482b88b2,user-01,What's the weather in Lisbon this weekend? I'm flying in Friday.,,ok,0.0,The user simply asked a question about the weather without showing any signs of frustration. There are no complaints or negative comments present in the conversation.

@@ -12,8 +12,6 @@ as span annotations.
   wonder       — does the response lead with evocative, specific writing vs. dry facts?
 """
 
-import json
-import os
 import sys
 from pathlib import Path
 
@@ -21,15 +19,21 @@ import pandas as pd
 from dotenv import load_dotenv
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "travel-assistant"))
+sys.path.insert(0, str(Path(__file__).parent))
 load_dotenv(Path(__file__).parent.parent / ".env")
 
 from phoenix.client import Client
 from phoenix.evals import ClassificationEvaluator, evaluate_dataframe
 from phoenix.evals.llm import LLM
 
-PHOENIX_URL = "http://127.0.0.1:6006"
-PROJECT_NAME = "travel-assistant"
-EVAL_MODEL = "gpt-4o-mini"
+from utils import (
+    EVAL_MODEL,
+    PHOENIX_URL,
+    PROJECT_NAME,
+    _extract_agent_response,
+    _extract_user_message,
+    _post_annotation,
+)
 
 HELPFULNESS_PROMPT = """\
 You are evaluating whether an AI travel assistant gave a helpful response.
@@ -72,46 +76,6 @@ do so in a flat, guidebook-generic way.
 
 Respond with exactly one word: "wonder" or "flat"\
 """
-
-
-def _extract_user_message(input_value: str) -> str:
-    try:
-        data = json.loads(input_value)
-        for msg in data.get("messages", []):
-            if msg.get("type") == "human":
-                return msg.get("data", {}).get("content") or msg.get("content", "")
-    except (json.JSONDecodeError, AttributeError, TypeError):
-        pass
-    return ""
-
-
-def _extract_agent_response(output_value: str) -> str:
-    try:
-        data = json.loads(output_value)
-        for msg in reversed(data.get("messages", [])):
-            if msg.get("type") == "ai":
-                content = msg.get("data", {}).get("content") or msg.get("content", "")
-                if content:
-                    return content
-    except (json.JSONDecodeError, AttributeError, TypeError):
-        pass
-    return ""
-
-
-def _post_annotation(client: Client, span_id: str, name: str, score_obj: dict) -> None:
-    label = str(score_obj.get("label") or "")
-    score = float(score_obj.get("score") or 0.0)
-    explanation = str(score_obj.get("explanation") or "")
-    client.spans.add_span_annotation(
-        span_id=span_id,
-        annotation_name=name,
-        annotator_kind="LLM",
-        label=label,
-        score=score,
-        explanation=explanation,
-        metadata={"model": EVAL_MODEL},
-        sync=True,
-    )
 
 
 def main() -> None:

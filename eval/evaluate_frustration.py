@@ -11,8 +11,6 @@ a dataset of frustrated interactions. Also exports raw spans and eval
 results to eval/spans/ as CSV files.
 """
 
-import json
-import os
 import sys
 from pathlib import Path
 
@@ -20,15 +18,22 @@ import pandas as pd
 from dotenv import load_dotenv
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "travel-assistant"))
+sys.path.insert(0, str(Path(__file__).parent))
 load_dotenv(Path(__file__).parent.parent / ".env")
 
 from phoenix.client import Client
 from phoenix.evals import ClassificationEvaluator, evaluate_dataframe
 from phoenix.evals.llm import LLM
 
-PHOENIX_URL = "http://127.0.0.1:6006"
-PROJECT_NAME = "travel-assistant"
-EVAL_MODEL = "gpt-4o-mini"
+from utils import (
+    EVAL_MODEL,
+    PHOENIX_URL,
+    PROJECT_NAME,
+    _extract_agent_response,
+    _extract_user_message,
+    _post_annotation,
+)
+
 DATASET_NAME = "frustrated-interactions"
 
 FRUSTRATION_PROMPT = """\
@@ -45,30 +50,6 @@ other tools, ultimatums or threats to stop using the service.
 
 Assess the user's emotional state at the end of the conversation. Respond with exactly
 one word: "frustrated" or "ok"."""
-
-
-def _extract_user_message(input_value: str) -> str:
-    try:
-        data = json.loads(input_value)
-        for msg in data.get("messages", []):
-            if msg.get("type") == "human":
-                return msg.get("data", {}).get("content") or msg.get("content", "")
-    except (json.JSONDecodeError, AttributeError, TypeError):
-        pass
-    return ""
-
-
-def _extract_agent_response(output_value: str) -> str:
-    try:
-        data = json.loads(output_value)
-        for msg in reversed(data.get("messages", [])):
-            if msg.get("type") == "ai":
-                content = msg.get("data", {}).get("content") or msg.get("content", "")
-                if content:
-                    return content
-    except (json.JSONDecodeError, AttributeError, TypeError):
-        pass
-    return ""
 
 
 def main() -> None:
@@ -138,26 +119,12 @@ def main() -> None:
     # user_frustration_explanation
 
     # --- 4. Post annotations to Phoenix ---------------------------------------
-    # evaluate_dataframe returns user_frustration_score as a Score dict:
-    # {"label": "frustrated"|"ok", "score": 1.0|0.0, "explanation": "...", ...}
     print("\nPosting annotations:")
     for _, row in results.iterrows():
         span_id = row["span_id"]
         score_obj = row.get("user_frustration_score") or {}
+        _post_annotation(client, span_id, "user_frustration", score_obj)
         label = str(score_obj.get("label") or "ok")
-        score = float(score_obj.get("score") or 0.0)
-        explanation = str(score_obj.get("explanation") or "")
-
-        client.spans.add_span_annotation(
-            span_id=span_id,
-            annotation_name="user_frustration",
-            annotator_kind="LLM",
-            label=label,
-            score=score,
-            explanation=explanation,
-            metadata={"model": EVAL_MODEL},
-            sync=True,
-        )
         tag = "FRUSTRATED" if label == "frustrated" else "ok      "
         session = str(row.get("session_id", ""))[:35]
         print(f"  [{tag}]  {session}")

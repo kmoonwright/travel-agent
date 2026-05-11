@@ -26,75 +26,52 @@
 
 ---
 
-## 2. API Request Lifecycle
+## 2. Agent Request Flow
 
 ```
   Client
     │
     │  POST /chat  { message, session_id, user_id }
     ▼
-  ┌─────────────────────────────────────────┐
-  │  FastAPI  (api.py)                      │
-  │                                         │
-  │  using_attributes(session_id, user_id)  │
-  │    └─ all child spans inherit context   │
-  └──────────────────┬──────────────────────┘
-                     │  agent.invoke(HumanMessage)
-                     ▼
-  ┌─────────────────────────────────────────┐
-  │  LangGraph Agent                        │
-  │                                         │
-  │  ┌─────────────────────────────────┐    │
-  │  │  llm_call                       │◄─┐ │
-  │  │  GPT-4o + 11 tools bound        │  │ │
-  │  └────────────────┬────────────────┘  │ │
-  │                   │                   │ │
-  │            tool_calls?                │ │
-  │                   │                   │ │
-  │          yes ─────┼──────────────┐    │ │
-  │                   │              ▼    │ │
-  │                   │  ┌───────────────┐│ │
-  │                   │  │  tool_node    ││ │
-  │                   │  │  invoke tool  ││ │
-  │                   │  │  → JSON result│├─┘
-  │                   │  └───────────────┘  │
-  │          no ──────┘                     │
-  └──────────────────┬──────────────────────┘
-                     │  final AIMessage.content
-                     ▼
+  ┌──────────────────────────────────────────┐
+  │  FastAPI  (api.py)                       │
+  │  using_attributes(session_id, user_id)   │
+  │    └─ all child spans inherit context    │
+  └───────────────────┬──────────────────────┘
+                      │  agent.invoke(HumanMessage)
+                      ▼
+  ┌──────────────────────────────────────────┐
+  │  LangGraph Agent                         │
+  │                                          │
+  │  ┌──────────────────────────────────┐    │
+  │  │  llm_call  (GPT-4o, temp=0)      │◄─┐ │
+  │  └─────────────────┬────────────────┘  │ │
+  │                    │                   │ │
+  │             tool_calls?                │ │
+  │                    │                   │ │
+  │           yes ─────┴──────────────┐    │ │
+  │                                   ▼    │ │
+  │                   ┌───────────────────┐│ │
+  │                   │  tool_node        ││ │
+  │                   │  get_weather      ││ │
+  │                   │  search_flights   ││ │
+  │                   │  search_hotels    ││ │
+  │                   │  convert_currency ││ │
+  │                   │  get_travel_adv.  │├─┘
+  │                   │  + 6 more         ││
+  │                   └───────────────────┘│
+  │           no ─────────────────────┐    │
+  └───────────────────┬───────────────┴────┘
+                      │  final AIMessage.content
+                      ▼
   Client  { response: "..." }
+
+  State: messages: list[AnyMessage]  (append-only, full history each loop)
 ```
 
 ---
 
-## 3. LangGraph Agent Graph
-
-```
-       START
-         │
-         ▼
-  ┌──────────────┐
-  │   llm_call   │◄────────────────────┐
-  │   GPT-4o     │                     │
-  │   temp = 0   │                     │
-  └──────┬───────┘                     │
-         │                             │
-    tool_calls?                        │
-         │                             │
-         ├── yes ──► ┌──────────────┐  │
-         │           │  tool_node   │  │
-         │           │  run tools   │──┘
-         │           └──────────────┘
-         │
-         └── no ──► END
-
-  State: messages: list[AnyMessage]
-         append-only — full history preserved each loop
-```
-
----
-
-## 4. Evaluation Pipeline
+## 3. Evaluation Pipeline
 
 ```
   ┌─────────────────────┐
